@@ -1,0 +1,118 @@
+{
+    "typescript.extension.sortImports.quoteStyle": "double",
+    "typescript.extension.sortImports.sortMethod": "path",
+    "typescript.extension.sortImports.sortOnSave": false,
+    "editor.rulers": [100],
+    "editor.fontFamily": "Inconsolata, Consolas, 'Courier New', monospace",
+    "window.zoomLevel": 0,
+    // Sort the outline
+    "symbolOutline.doSort": true,
+    // Kinds of nodes to be expanded automatically.
+    "symbolOutline.expandNodes": [
+        "Interface",
+        "Class",
+        "Object",
+    ],
+    "symbolOutline.sortOrder": [
+        "Class",
+        "Constant",
+        "Interface",
+        "*",
+        "Constructor",
+        "Function",
+        "Method"
+    ],
+    "symbolOutline.topLevel": [
+        "Class",
+        "Method",
+        "Function",
+        "Interface",
+    ],
+    "gitlens.advanced.messages": {
+        "suppressShowKeyBindingsNotice": true
+    },
+    // Config object for PostCSS Sorting or path to config file.
+    "postcssSorting.config": {
+        "order": [
+            "at-rules",
+            "declarations",
+            "rules",
+            "custom-properties",
+        ],
+        "properties-order": [
+            "border",
+            "display",
+            "margin",
+            "padding-top",
+            "padding-right",
+            "padding-bottom",
+            "padding-left",
+            "left",
+            "position",
+            "right",
+            "top",
+            "z-index",
+            "bottom",
+            "background-color",
+            "color",
+            "border-color",
+            "font-family",
+            "font-style",
+            "font-weight",
+            "font-size",
+            "text-transform",
+            "box-shadow",
+            "content",
+            "transform",
+            "transition",
+        ],
+        "unspecified-properties-position": "bottom",
+    },
+    // Show error messages or not. Will be automatically set to false if 'editor.formatOnSave' is enabled.
+    "postcssSorting.showErrorMessages": true,
+     // Auto format on save.
+    "csscomb.formatOnSave": false,
+    // An optional array of glob-patterns to ignore files on save.
+    "csscomb.ignoreFilesOnSave": [],
+    // One of the predefined configs (csscomb, yandex, zen) or custom config (object) or path to config.
+    "csscomb.preset": {
+        "remove-empty-rulesets": true,
+        "always-semicolon": true,
+        "color-case": "lower",
+        "quotes": "double",
+        "block-indent": "    ",
+        "tab-size": true,
+        "space-before-colon": "",
+        "space-after-colon": " ",
+        "space-before-combinator": " ",
+        "space-after-combinator": " ",
+        "space-between-declarations": "\n",
+        "space-before-opening-brace": " ",
+        "space-after-opening-brace": "\n",
+        "space-before-selector-delimiter": "",
+        "space-before-closing-brace": "\n",
+        "strip-spaces": true,
+        "vendor-prefix-align": true
+    },
+    // Support embedded CSS into HTML.
+    "csscomb.supportEmbeddedStyles": true,
+    // Configuration of syntax associations.
+    "csscomb.syntaxAssociations": {},
+    "editor.renderWhitespace": "none",
+    "typescript.format.insertSpaceAfterOpeningAndBeforeClosingJsxExpressionBraces": false,
+    "typescript.format.insertSpaceAfterTypeAssertion": true,
+    "typescript.format.insertSpaceAfterOpeningAndBeforeClosingTemplateStringBraces": true,
+    "gitlens.historyExplorer.enabled": false,
+    "typescript.updateImportsOnFileMove.enabled": "always",
+    "extensions.ignoreRecommendations": true,
+    "trailing-spaces.trimOnSave": true,
+    "csharp.referencesCodeLens.enabled": false,
+    "workbench.colorTheme": "One Dark Pro Vivid",
+    "emmet.includeLanguages": {
+        "javascript": "javascriptreact",
+        "typescript": "typescript",
+        "typescriptreact": "typescriptreact",
+        "jsx-sublime-babel-tags": "javascriptreact"
+    },
+    "emmet.triggerExpansionOnTab": true
+}
