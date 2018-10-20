@@ -1,37 +1,37 @@
 {
+    //////////////////////////////////////////////////////////////
+    // TSLint Extension                                         //
+    //////////////////////////////////////////////////////////////  
     "typescript.extension.sortImports.quoteStyle": "double",
     "typescript.extension.sortImports.sortMethod": "path",
     "typescript.extension.sortImports.sortOnSave": false,
+    "typescript.updateImportsOnFileMove.enabled": "always",
+    "typescript.format.insertSpaceAfterOpeningAndBeforeClosingJsxExpressionBraces": false,
+    "typescript.format.insertSpaceAfterTypeAssertion": true,
+    "typescript.format.insertSpaceAfterOpeningAndBeforeClosingTemplateStringBraces": true,
+
+    //////////////////////////////////////////////////////////////
+    // Editor/Misc Configuration                                //
+    //////////////////////////////////////////////////////////////  
     "editor.rulers": [100],
     "editor.fontFamily": "Inconsolata, Consolas, 'Courier New', monospace",
+    "editor.renderWhitespace": "none",
     "window.zoomLevel": 0,
-    // Sort the outline
-    "symbolOutline.doSort": true,
-    // Kinds of nodes to be expanded automatically.
-    "symbolOutline.expandNodes": [
-        "Interface",
-        "Class",
-        "Object",
-    ],
-    "symbolOutline.sortOrder": [
-        "Class",
-        "Constant",
-        "Interface",
-        "*",
-        "Constructor",
-        "Function",
-        "Method"
-    ],
-    "symbolOutline.topLevel": [
-        "Class",
-        "Method",
-        "Function",
-        "Interface",
-    ],
+    "workbench.colorTheme": "One Dark Pro Vivid",
+    "csharp.referencesCodeLens.enabled": false,
+    "extensions.ignoreRecommendations": true,
+
+    //////////////////////////////////////////////////////////////
+    // GitLens Extension                                        //
+    //////////////////////////////////////////////////////////////  
     "gitlens.advanced.messages": {
         "suppressShowKeyBindingsNotice": true
     },
-    // Config object for PostCSS Sorting or path to config file.
+    "gitlens.historyExplorer.enabled": false,
+
+    //////////////////////////////////////////////////////////////
+    // PostCSS Sorting Extension                                //
+    //////////////////////////////////////////////////////////////
     "postcssSorting.config": {
         "order": [
             "at-rules",
@@ -68,13 +68,13 @@
         ],
         "unspecified-properties-position": "bottom",
     },
-    // Show error messages or not. Will be automatically set to false if 'editor.formatOnSave' is enabled.
     "postcssSorting.showErrorMessages": true,
-     // Auto format on save.
+
+    //////////////////////////////////////////////////////////////
+    // CSSComb Extension                                        //
+    //////////////////////////////////////////////////////////////
     "csscomb.formatOnSave": false,
-    // An optional array of glob-patterns to ignore files on save.
     "csscomb.ignoreFilesOnSave": [],
-    // One of the predefined configs (csscomb, yandex, zen) or custom config (object) or path to config.
     "csscomb.preset": {
         "remove-empty-rulesets": true,
         "always-semicolon": true,
@@ -94,20 +94,17 @@
         "strip-spaces": true,
         "vendor-prefix-align": true
     },
-    // Support embedded CSS into HTML.
     "csscomb.supportEmbeddedStyles": true,
-    // Configuration of syntax associations.
     "csscomb.syntaxAssociations": {},
-    "editor.renderWhitespace": "none",
-    "typescript.format.insertSpaceAfterOpeningAndBeforeClosingJsxExpressionBraces": false,
-    "typescript.format.insertSpaceAfterTypeAssertion": true,
-    "typescript.format.insertSpaceAfterOpeningAndBeforeClosingTemplateStringBraces": true,
-    "gitlens.historyExplorer.enabled": false,
-    "typescript.updateImportsOnFileMove.enabled": "always",
-    "extensions.ignoreRecommendations": true,
+
+    //////////////////////////////////////////////////////////////
+    // Trailing Spaces Extension                                //
+    //////////////////////////////////////////////////////////////  
     "trailing-spaces.trimOnSave": true,
-    "csharp.referencesCodeLens.enabled": false,
-    "workbench.colorTheme": "One Dark Pro Vivid",
+
+    //////////////////////////////////////////////////////////////
+    // JavaScript (ES6) code snippets Extension                 //
+    //////////////////////////////////////////////////////////////  
     "emmet.includeLanguages": {
         "javascript": "javascriptreact",
         "typescript": "typescript",
