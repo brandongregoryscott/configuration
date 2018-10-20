@@ -52,3 +52,21 @@ function ga() {
 function gs() {
 	git status
 }
+
+# lcb($a, $b)
+# lists commits between branch a and branch b
+# output format is <abbrev commit> <author name> <date> <commit msg>
+function lcb() {
+	 git log --cherry-pick --pretty="%h	%an	%ad	%s" --abbrev-commit $1 --not $2
+}
+
+# gss($stash?)
+# git stash show (optionally, number of stashes behind to show)
+function gss {
+	if [[ $# -eq 0 ]];
+	then
+		git stash show -p
+	else
+		git stash show -p stash@{$1}
+	fi
+}
