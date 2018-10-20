@@ -1,6 +1,34 @@
 #!/bin/bash
 
 #########################
+# misc functions        #
+#########################
+
+function sourceme() {
+	source ~/.bashrc
+}
+
+function killdotnet() {
+	PIDS=`ps  | grep dotnet | sed -e 's/ \+/ /g' | cut -d" " -f2 | tr "\n" " "`
+	echo "${PIDS[@]}"
+	for PID in ${PIDS[@]};
+	do
+		echo "Killing dotnet process id $PID"
+		kill -9 $PID
+	done
+}
+
+function killnode() {
+	PIDS=`ps  | grep node | sed -e 's/ \+/ /g' | cut -d" " -f2 | tr "\n" " "`
+	echo "${PIDS[@]}"
+	for PID in ${PIDS[@]};
+	do
+		echo "Killing node process id $PID"
+		kill -9 $PID
+	done
+}
+
+#########################
 # git wrapper functions #
 #########################
 
