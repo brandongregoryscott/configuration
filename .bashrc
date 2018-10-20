@@ -32,6 +32,22 @@ function killnode() {
 # git wrapper functions #
 #########################
 
+function gcm() {
+	if [[ -d .git ]];
+	then
+		JIRA_TASK=`git branch | grep "* " | sed "s/* //g" | cut -d "/" -f2 | cut -d "-" -f1-2`
+		if [[ $1 == "--soft" ]] || [[ $1 == "-s" ]];
+		then
+			shift
+			echo "git commit -m \"$JIRA_TASK $@\""
+		else
+			git commit -m "$JIRA_TASK $@"
+		fi
+	else
+		echo "No git repository found."
+	fi
+}
+
 function gd() {
 	git diff $1
 }
@@ -42,6 +58,10 @@ function gf() {
 
 function gc() {
 	git checkout "$@"
+}
+
+function gcb() {
+	git checkout -b "$1"
 }
 
 function gbd() {
