@@ -1,10 +1,22 @@
 #!/bin/bash
-
+true=0
+false=1
 #########################
 # misc functions        #
 #########################
 
+function isMac() {
+	uname=`uname`
+	if [[ $uname == "Darwin" ]];
+	then
+		return $true;
+	else
+		return $false;
+	fi
+}
+
 function sourceme() {
+	echo "source ~/.bashrc"
 	source ~/.bashrc
 }
 
@@ -28,11 +40,28 @@ function killnode() {
 	done
 }
 
+function cpbashrc() {
+	echo "cp ~/configuration/.bashrc ~/.bashrc"
+	cp ~/configuration/.bashrc ~/.bashrc
+}
+
+function cpvscode() {
+	if isMac;
+	then
+		echo "cp ~/configuration/vscode/settings.json ~/Library/Application Support/Code/User/"
+		cp ~/configuration/vscode/settings.json ~/Library/"Application Support"/Code/User/
+	fi;
+}
+
 #########################
 # git wrapper functions #
 #########################
 
 function gcm() {
+	git commit -m "$@"
+}
+
+function gcj() {
 	if [[ -d .git ]];
 	then
 		JIRA_TASK=`git branch | grep "* " | sed "s/* //g" | cut -d "/" -f2 | cut -d "-" -f1-2`
