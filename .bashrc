@@ -1,6 +1,15 @@
 #!/bin/bash
+
+#########################
+# variables             #
+#########################
+
+dv1="development-v1"
+wv1="working-v1"
+sv1="staging-v1"
 true=0
 false=1
+
 #########################
 # misc functions        #
 #########################
@@ -22,7 +31,7 @@ function sourceme() {
 
 function killdotnet() {
 	PIDS=`ps  | grep dotnet | sed -e 's/ \+/ /g' | cut -d" " -f2 | tr "\n" " "`
-	echo "${PIDS[@]}"
+	echo "Found dotnet processes: ${PIDS[@]}"
 	for PID in ${PIDS[@]};
 	do
 		echo "Killing dotnet process id $PID"
@@ -32,7 +41,7 @@ function killdotnet() {
 
 function killnode() {
 	PIDS=`ps  | grep node | sed -e 's/ \+/ /g' | cut -d" " -f2 | tr "\n" " "`
-	echo "${PIDS[@]}"
+	echo "Found node processes: ${PIDS[@]}"
 	for PID in ${PIDS[@]};
 	do
 		echo "Killing node process id $PID"
@@ -146,4 +155,11 @@ function gss {
 	else
 		git stash show -p stash@{$1}
 	fi
+}
+
+# mdv1()
+# kills dotnet & node, checks out $dv1, pulls changes, and merges $dv1 into starting branch
+function mdv1() {
+	STARTING_BRANCH=`git branch | grep "* " | sed -e "s/* //g"`
+	killnode && killdotnet && git checkout $dv1 && git pull && git checkout $STARTING_BRANCH && git merge $dv1
 }
