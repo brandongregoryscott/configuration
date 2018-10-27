@@ -9,10 +9,51 @@ wv1="working-v1"
 sv1="staging-v1"
 true=0
 false=1
+PS1='\[\e[0;35m\]\u@\h\[\033[00m\] \[\033[01;34m\]`shortpwd`\[\033[00m\] -> '
 
 #########################
 # misc functions        #
 #########################
+
+
+function hidedotfiles() {
+	if isMac;
+	then
+		echo "defaults write com.apple.finder AppleShowAllFiles NO"
+		defaults write com.apple.finder AppleShowAllFiles NO
+		echo "killall Finder /System/Library/CoreServices/Finder.app"
+		killall Finder /System/Library/CoreServices/Finder.app
+	fi;
+}
+
+function showdotfiles() {
+	if isMac;
+	then
+		echo "defaults write com.apple.finder AppleShowAllFiles YES"
+		defaults write com.apple.finder AppleShowAllFiles YES
+		echo "killall Finder /System/Library/CoreServices/Finder.app"
+		killall Finder /System/Library/CoreServices/Finder.app
+	fi;
+}
+
+function shortpwd() {
+  pwd | sed s.$HOME.~.g | awk -F\/ '
+  BEGIN { ORS="/" }
+  END {
+  for (i=1; i<= NF; i++) {
+      if ((i == 1 && $1 != "") || i == 2 || i == NF-1 || i == NF) {
+        print $i
+      }
+      else if (i == 1 && $1 == "") {
+        print "/"$2
+        i++
+      }
+      else {
+        print ".."
+      }
+    }
+  }'
+}
 
 function isMac() {
 	uname=`uname`
