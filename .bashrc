@@ -9,7 +9,7 @@ wv1="working-v1"
 sv1="staging-v1"
 true=0
 false=1
-PS1='\[\e[0;35m\]\u@\h\[\033[00m\] \[\033[01;34m\]`shortpwd`\[\033[00m\] -> '
+PS1='\[\e[0;32m\]\u@\h\[\033[00m\] \[\033[01;33m\]`shortpwd`\[\033[00m\] \[\033[01;35m\]`branchName`\[\033[00m\] -> '
 
 #########################
 # misc functions        #
@@ -53,6 +53,16 @@ function shortpwd() {
       }
     }
   }'
+}
+
+function branchName() {
+	if [[ -d .git ]];
+	then
+		BRANCH_NAME=`git branch | grep "* " | sed "s/* //g"`
+		echo "($BRANCH_NAME)"
+	else
+		echo ""
+	fi
 }
 
 function isMac() {
