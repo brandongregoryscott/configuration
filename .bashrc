@@ -107,6 +107,10 @@ function cpvscode() {
 # git wrapper functions #
 #########################
 
+function gca() {
+	git commit --amend
+}
+
 function gcm() {
 	git commit -m "$@"
 }
@@ -158,8 +162,10 @@ function gm() {
 	git merge $1
 }
 
+# gp()
+# runs git push & copies pull request url to clipboard
 function gp() {
-	git push
+	git push | grep "https" | cut -d " " -f4 | clip
 }
 
 function grh() {
