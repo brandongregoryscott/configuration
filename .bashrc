@@ -122,6 +122,12 @@ function cpvscode() {
 		echo "cp ~/configuration/vscode/settings.json ~/Library/Application Support/Code/User/"
 		cp ~/configuration/vscode/settings.json ~/Library/"Application Support"/Code/User/
 	fi;
+
+	if isWindows;
+	then
+		echo "cp ~/configuration/vscode/settings.json $APPDATA/Code/User/"
+		cp ~/configuration/vscode/settings.json $APPDATA/Code/User/
+	fi;
 }
 
 #########################
