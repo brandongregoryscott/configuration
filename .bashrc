@@ -4,9 +4,10 @@
 # variables             #
 #########################
 
-dv1="development-v1"
-wv1="working-v1"
-sv1="staging-v1"
+dv="development"
+wv="working-"
+sv="staging-v1"
+pd="production-v1"
 true=0
 false=1
 PS1='\[\e[0;32m\]\u@\h\[\033[00m\] \[\033[01;33m\]`shortpwd`\[\033[00m\] \[\033[01;35m\]`branchName`\[\033[00m\] -> '
@@ -72,6 +73,16 @@ function isMac() {
 		return $true;
 	else
 		return $false;
+	fi
+}
+
+function isWindows() {
+	uname=`uname | grep -c "MINGW"`
+	if [[ $uname -eq 0 ]];
+	then
+		return $false;
+	else
+		return $true;
 	fi
 }
 
@@ -165,17 +176,23 @@ function gbd() {
 }
 
 function gb() {
-	git branch
+	git branch $@
 }
 
+# gm()
+# kills dotnet & node, checks out specified branch, pulls changes, and merges into starting branch
 function gm() {
-	git merge $1
+	STARTING_BRANCH=`git branch | grep "* " | sed -e "s/* //g"`
+	killnode && killdotnet && git checkout $1 && git pull && git checkout $STARTING_BRANCH && git merge $1
 }
 
-# gp()
-# runs git push & copies pull request url to clipboard
 function gp() {
-	git push | grep "https" | cut -d " " -f4 | clip
+	if isWindows;
+	then
+		echo `git push $@` | grep "https" | cut -d " " -f4 > /dev/clipboard
+	else
+		git push $@
+	fi
 }
 
 function grh() {
@@ -212,11 +229,4 @@ function gss {
 	else
 		git stash show -p stash@{$1}
 	fi
-}
-
-# mdv1()
-# kills dotnet & node, checks out $dv1, pulls changes, and merges $dv1 into starting branch
-function mdv1() {
-	STARTING_BRANCH=`git branch | grep "* " | sed -e "s/* //g"`
-	killnode && killdotnet && git checkout $dv1 && git pull && git checkout $STARTING_BRANCH && git merge $dv1
 }
