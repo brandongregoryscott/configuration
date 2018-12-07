@@ -115,5 +115,9 @@
         "typescriptreact": "typescriptreact",
         "jsx-sublime-babel-tags": "javascriptreact"
     },
-    "emmet.triggerExpansionOnTab": true
+    "emmet.triggerExpansionOnTab": true,
+    "workbench.iconTheme": "vscode-icons",
+    "editor.minimap.enabled": false,
+    "gitlens.views.fileHistory.enabled": false,
+    "gitlens.views.lineHistory.enabled": false
 }
