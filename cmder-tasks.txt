@@ -1,7 +1,0 @@
--cur_console:d:C:\Clients\CCA\cca-lms\ -cur_console:C:C:\cmder\icons\cmder.ico cmd /c "%ConEmuDir%\..\git-for-windows\bin\bash --login -i "
-
--cur_console:s1T37H -cur_console:d:C:\Clients\CCA\cca-lms\ -cur_console:C:C:\cmder\icons\cmder.ico cmd /c "%ConEmuDir%\..\git-for-windows\bin\bash --login -i "
-
--cur_console:s2T53V -cur_console:d:C:\Clients\CCA\cca-lms\ -cur_console:C:C:\cmder\icons\cmder.ico cmd /c "%ConEmuDir%\..\git-for-windows\bin\bash --login -i "
-
--cur_console:s3T16V -cur_console:d:C:\Users\bscot %windir%\system32\bash.exe
