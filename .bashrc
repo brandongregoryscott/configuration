@@ -87,8 +87,17 @@ function isWindows() {
 }
 
 function sourceme() {
-	echo "source ~/.bashrc"
-	source ~/.bashrc
+	if isMac;
+	then;
+		echo "source ~/.bash_profile"
+		source ~/.bash_profile
+	fi;
+
+	if isWindows;
+	then
+		echo "source ~/.bashrc"
+		source ~/.bashrc
+	fi;
 }
 
 function killdotnet() {
@@ -112,8 +121,16 @@ function killnode() {
 }
 
 function cpbashrc() {
-	echo "cp ~/configuration/.bashrc ~/.bashrc"
-	cp ~/configuration/.bashrc ~/.bashrc
+	if isMac;
+	then
+		echo "cp ~/configuration/.bashrc ~/.bash_profile"
+		cp ~/configuration/.bashrc ~/.bash_profile	
+	fi;
+	if isWindows;
+	then
+		echo "cp ~/configuration/.bashrc ~/.bashrc"
+		cp ~/configuration/.bashrc ~/.bashrc
+	fi;
 }
 
 function cpvscode() {
