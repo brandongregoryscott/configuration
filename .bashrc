@@ -88,7 +88,7 @@ function isWindows() {
 
 function sourceme() {
 	if isMac;
-	then;
+	then
 		echo "source ~/.bash_profile"
 		source ~/.bash_profile
 	fi;
