@@ -92,23 +92,14 @@ function sourceme() {
 }
 
 function killdotnet() {
-	PIDS=`ps  | grep dotnet | sed -e 's/ \+/ /g' | cut -d" " -f2 | tr "\n" " "`
-	echo "Found dotnet processes: ${PIDS[@]}"
-	for PID in ${PIDS[@]};
-	do
-		echo "Killing dotnet process id $PID"
-		kill -9 $PID
-	done
+    dotnet build-server shutdown
+	echo "Found dotnet processes: $(ps aux | grep 'dotnet' | awk '{print $1}')"
+	kill $(ps aux | grep 'dotnet' | awk '{print $1}')
 }
 
 function killnode() {
-	PIDS=`ps  | grep node | sed -e 's/ \+/ /g' | cut -d" " -f2 | tr "\n" " "`
-	echo "Found node processes: ${PIDS[@]}"
-	for PID in ${PIDS[@]};
-	do
-		echo "Killing node process id $PID"
-		kill -9 $PID
-	done
+	echo "Found node processes: $(ps aux | grep 'node' | awk '{print $2}')"
+	kill $(ps aux | grep 'node' | awk '{print $2}')
 }
 
 function cpbashrc() {
