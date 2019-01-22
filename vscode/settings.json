@@ -1,29 +1,29 @@
 {
-    "dotnet-test-explorer.testProjectPath": "LMS\\Tests\\Business\\*.Tests",
-    "tslint.autoFixOnSave": true,
-    "typescript.extension.sortImports.maxNamedImportsInSingleLine": 1,
-    "typescript.preferences.importModuleSpecifier": "non-relative",
-    //////////////////////////////////////////////////////////////
-    // TSLint Extension                                         //
-    //////////////////////////////////////////////////////////////
-    "typescript.extension.sortImports.quoteStyle": "double",
-    "typescript.extension.sortImports.sortMethod": "path",
-    "typescript.extension.sortImports.sortOnSave": false,
-    "typescript.updateImportsOnFileMove.enabled": "always",
-    "typescript.format.insertSpaceAfterOpeningAndBeforeClosingJsxExpressionBraces": false,
-    "typescript.format.insertSpaceAfterTypeAssertion": true,
-    "typescript.format.insertSpaceAfterOpeningAndBeforeClosingTemplateStringBraces": true,
-
     //////////////////////////////////////////////////////////////
     // Editor/Misc Configuration                                //
     //////////////////////////////////////////////////////////////
-    "editor.rulers": [100],
-    "editor.fontFamily": "Inconsolata, Consolas, 'Courier New', monospace",
-    "editor.renderWhitespace": "none",
-    "window.zoomLevel": 0,
-    "workbench.colorTheme": "One Dark Pro Vivid",
     "csharp.referencesCodeLens.enabled": false,
+    "editor.fontFamily": "Inconsolata, Consolas, 'Courier New', monospace",
+    "editor.minimap.enabled": false,
+    "editor.renderWhitespace": "none",
+    "editor.rulers": [100],
     "extensions.ignoreRecommendations": true,
+    "window.zoomLevel": 0,
+    "workbench.iconTheme": "vscode-icons",
+
+    //////////////////////////////////////////////////////////////
+    // TSLint Extension                                         //
+    //////////////////////////////////////////////////////////////
+    "tslint.autoFixOnSave": true,
+    "typescript.extension.sortImports.maxNamedImportsInSingleLine": 1,
+    "typescript.extension.sortImports.quoteStyle": "double",
+    "typescript.extension.sortImports.sortMethod": "path",
+    "typescript.extension.sortImports.sortOnSave": false,
+    "typescript.format.insertSpaceAfterOpeningAndBeforeClosingJsxExpressionBraces": false,
+    "typescript.format.insertSpaceAfterOpeningAndBeforeClosingTemplateStringBraces": true,
+    "typescript.format.insertSpaceAfterTypeAssertion": true,
+    "typescript.preferences.importModuleSpecifier": "non-relative",
+    "typescript.updateImportsOnFileMove.enabled": "always",
 
     //////////////////////////////////////////////////////////////
     // GitLens Extension                                        //
@@ -32,6 +32,8 @@
         "suppressShowKeyBindingsNotice": true
     },
     "gitlens.historyExplorer.enabled": false,
+    "gitlens.views.fileHistory.enabled": false,
+    "gitlens.views.lineHistory.enabled": false,
 
     //////////////////////////////////////////////////////////////
     // PostCSS Sorting Extension                                //
@@ -102,11 +104,6 @@
     "csscomb.syntaxAssociations": {},
 
     //////////////////////////////////////////////////////////////
-    // Trailing Spaces Extension                                //
-    //////////////////////////////////////////////////////////////
-    "trailing-spaces.trimOnSave": true,
-
-    //////////////////////////////////////////////////////////////
     // JavaScript (ES6) code snippets Extension                 //
     //////////////////////////////////////////////////////////////
     "emmet.includeLanguages": {
@@ -116,8 +113,10 @@
         "jsx-sublime-babel-tags": "javascriptreact"
     },
     "emmet.triggerExpansionOnTab": true,
-    "workbench.iconTheme": "vscode-icons",
-    "editor.minimap.enabled": false,
-    "gitlens.views.fileHistory.enabled": false,
-    "gitlens.views.lineHistory.enabled": false
+
+    //////////////////////////////////////////////////////////////
+    // Trailing-Spaces Extension                                //
+    //////////////////////////////////////////////////////////////
+    "trailing-spaces.trimOnSave": true,
+    "trailing-spaces.saveAfterTrim": true
 }
