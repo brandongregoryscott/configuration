@@ -31,9 +31,8 @@
     "gitlens.advanced.messages": {
         "suppressShowKeyBindingsNotice": true
     },
-    "gitlens.historyExplorer.enabled": false,
-    "gitlens.views.fileHistory.enabled": false,
-    "gitlens.views.lineHistory.enabled": false,
+    "gitlens.views.fileHistory.enabled": true,
+    "gitlens.views.lineHistory.enabled": true,
 
     //////////////////////////////////////////////////////////////
     // PostCSS Sorting Extension                                //
