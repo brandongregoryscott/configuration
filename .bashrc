@@ -115,7 +115,7 @@ function cpbashrc() {
 	if isMac;
 	then
 		echo "cp ~/configuration/.bashrc ~/.bash_profile"
-		cp ~/configuration/.bashrc ~/.bash_profile	
+		cp ~/configuration/.bashrc ~/.bash_profile
 	fi;
 	if isWindows;
 	then
@@ -193,11 +193,8 @@ function gb() {
 	git branch $@
 }
 
-# gm()
-# kills dotnet & node, checks out specified branch, pulls changes, and merges into starting branch
 function gm() {
-	STARTING_BRANCH=`git branch | grep "* " | sed -e "s/* //g"`
-	killnode && killdotnet && git checkout $1 && git pull && git checkout $STARTING_BRANCH && git merge $1
+	git merge $1
 }
 
 function gp() {
