@@ -182,11 +182,19 @@ function gcb() {
 	git checkout -b "$1"
 }
 
+# gbd($@)
+# deletes a local branch (or list of branches separated by spaces)
 function gbd() {
 	for branchName in "$@"
 	do
 		git branch -D $branchName
 	done
+}
+
+# gbdr($1)
+# deletes a remote branch from the origin repository
+function gbdr() {
+	git push --delete origin $1
 }
 
 function gb() {
