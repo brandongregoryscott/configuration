@@ -31,7 +31,7 @@ sv="staging-v1"
 pd="production-v1"
 true=0
 false=1
-PS1='\[\e[0;32m\]\u@\h\[\033[00m\] \[\033[01;33m\]`shortpwd`\[\033[00m\]\[\033[01;35m\]`branchName`\[\033[00m\] -> '
+PS1="$GREEN\u@\h $YELLOW`shortpwd` $PURPLE`branchName` $NO_COLOR-> "
 
 #########################
 # misc functions        #
@@ -104,7 +104,7 @@ function branchName() {
 	if [[ -d .git ]];
 	then
 		BRANCH_NAME=`git branch | grep "* " | sed "s/* //g"`
-		echo " ($BRANCH_NAME)"
+		echo "($BRANCH_NAME)"
 	else
 		echo ""
 	fi
