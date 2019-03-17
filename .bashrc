@@ -37,6 +37,29 @@ PS1='\[\e[0;32m\]\u@\h\[\033[00m\] \[\033[01;33m\]`shortpwd`\[\033[00m\]\[\033[0
 # misc functions        #
 #########################
 
+function error() {
+	echo -e "${RED}ERROR: ${NO_COLOR}$@"
+}
+
+function warn() {
+	echo -e "${YELLOW}WARN: ${NO_COLOR}$@"
+}
+
+function cpIfNotExists() {
+	if [ ! -f $2 ]; then
+		cp $1 $2
+	else
+		warn "$2 already exists. Not copying again."
+	fi
+}
+
+function mkdirIfNotExists() {
+	if [ ! -d $1 ]; then
+		mkdir -p $1
+	else
+		warn "$1 already exists. Not creating directory again."
+	fi
+}
 
 function hidedotfiles() {
 	if isMac;
@@ -269,4 +292,44 @@ function gss {
 	else
 		git stash show -p stash@{$1}
 	fi
+}
+
+#########################
+# Processing helpers    #
+#########################
+
+function setupLibrary() {
+	PWD=`pwd`
+	LIBRARY_NAME=`basename $PWD`
+
+	mkdirIfNotExists bin/$LIBRARY_NAME
+	mkdirIfNotExists dist/$LIBRARY_NAME/library
+	mkdirIfNotExists lib
+	mkdirIfNotExists src/$LIBRARY_NAME
+
+	# Example: /Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib
+	JVM_DIR="/Library/Java/JavaVirtualMachines"
+	JDK=`ls $JVM_DIR | grep jdk | tail -1`
+
+	cpIfNotExists $JVM_DIR/$JDK/Contents/Home/jre/lib/rt.jar lib/rt.jar
+	cpIfNotExists /Applications/Processing.app/Contents/Java/core.jar lib/core.jar
+}
+
+function libraryMake() {
+	PWD=`pwd`
+	LIBRARY_NAME=`basename $PWD`
+	echo $LIBRARY_NAME
+	javac -d bin -target 1.6 -source 1.6 -sourcepath src -cp lib/core.jar src/$LIBRARY_NAME/*.java  -bootclasspath lib/rt.jar
+	if [ $? -ne 0 ];
+	then
+		echo -e "${RED}ERROR: ${NO_COLOR}Could not compile files. Exiting."
+		exit
+	fi;
+	pushd bin
+	jar cfv ../dist/$LIBRARY_NAME/library/$LIBRARY_NAME.jar  *
+}
+
+function libraryDist() {
+	SKETCHBOOK_LIBRARIES_FOLDER="/Users/Brandon/Documents/Processing/libraries"
+	cp -R dist/* $SKETCHBOOK_LIBRARIES_FOLDER
 }
