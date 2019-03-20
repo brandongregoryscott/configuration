@@ -31,7 +31,7 @@ sv="staging-v1"
 pd="production-v1"
 true=0
 false=1
-PS1="$GREEN\u@\h $YELLOW`shortpwd` $PURPLE`branchName` $NO_COLOR-> "
+PS1='\[\e[0;32m\]\u@\h\[\033[00m\] \[\033[01;33m\]`shortpwd`\[\033[00m\] \[\033[01;35m\]`branchName`\[\033[00m\] -> '
 
 #########################
 # misc functions        #
