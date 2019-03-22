@@ -318,7 +318,7 @@ function setupLibrary() {
 function libraryMake() {
 	PWD=`pwd`
 	LIBRARY_NAME=`basename $PWD`
-	echo $LIBRARY_NAME
+	echo "javac -d bin -target 1.6 -source 1.6 -sourcepath src -cp lib/core.jar src/$LIBRARY_NAME/*.java  -bootclasspath lib/rt.jar"
 	javac -d bin -target 1.6 -source 1.6 -sourcepath src -cp lib/core.jar src/$LIBRARY_NAME/*.java  -bootclasspath lib/rt.jar
 	if [ $? -ne 0 ];
 	then
@@ -326,10 +326,13 @@ function libraryMake() {
 		exit
 	fi;
 	pushd bin
-	jar cfv ../dist/$LIBRARY_NAME/library/$LIBRARY_NAME.jar  *
+	echo "jar cfv ../dist/$LIBRARY_NAME/library/$LIBRARY_NAME.jar *"
+	jar cfv ../dist/$LIBRARY_NAME/library/$LIBRARY_NAME.jar *
+	popd
 }
 
 function libraryDist() {
 	SKETCHBOOK_LIBRARIES_FOLDER="/Users/Brandon/Documents/Processing/libraries"
+	echo "cp -R dist/* $SKETCHBOOK_LIBRARIES_FOLDER"
 	cp -R dist/* $SKETCHBOOK_LIBRARIES_FOLDER
 }
