@@ -37,8 +37,13 @@ PS1='\[\e[0;32m\]\u@\h\[\033[00m\] \[\033[01;33m\]`shortpwd`\[\033[00m\] \[\033[
 # misc functions        #
 #########################
 
+
 function error() {
 	echo -e "${RED}ERROR: ${NO_COLOR}$@"
+}
+
+function ok() {
+	echo -e "${GREEN}OK: ${NO_COLOR}$@"
 }
 
 function warn() {
@@ -47,6 +52,7 @@ function warn() {
 
 function cpIfNotExists() {
 	if [ ! -f $2 ]; then
+		ok "cp $1 $2"
 		cp $1 $2
 	else
 		warn "$2 already exists. Not copying again."
@@ -55,6 +61,7 @@ function cpIfNotExists() {
 
 function mkdirIfNotExists() {
 	if [ ! -d $1 ]; then
+		ok "mkdir -p $1"
 		mkdir -p $1
 	else
 		warn "$1 already exists. Not creating directory again."
