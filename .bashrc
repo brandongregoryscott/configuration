@@ -32,6 +32,10 @@ pd="production-v1"
 true=0
 false=1
 PS1='\[\e[0;32m\]\u@\h\[\033[00m\] \[\033[01;33m\]`shortpwd`\[\033[00m\] \[\033[01;35m\]`branchName`\[\033[00m\] -> '
+PWD=`pwd`
+BASENAME=`basename $PWD`
+# Replace any . with / to make recursive folder structure for java packaging
+LIBRARY_NAME=`echo $BASENAME | sed "s|\.|/|"`
 
 #########################
 # misc functions        #
@@ -306,9 +310,6 @@ function gss {
 #########################
 
 function setupLibrary() {
-	PWD=`pwd`
-	LIBRARY_NAME=`basename $PWD`
-
 	mkdirIfNotExists bin/$LIBRARY_NAME
 	mkdirIfNotExists dist/$LIBRARY_NAME/library
 	mkdirIfNotExists lib
@@ -326,20 +327,17 @@ function libraryMake() {
 	# Attempt to setup library again to make sure rt.jar & core.jar files are present for compilation.
 	librarySetup
 
-	PWD=`pwd`
-	LIBRARY_NAME=`basename $PWD`
-
 	ok "javac -d bin -target 1.6 -source 1.6 -sourcepath src -cp lib/core.jar src/$LIBRARY_NAME/*.java  -bootclasspath lib/rt.jar"
 	javac -d bin -target 1.6 -source 1.6 -sourcepath src -cp lib/core.jar src/$LIBRARY_NAME/*.java  -bootclasspath lib/rt.jar
 	if [ $? -ne 0 ];
 	then
 		error "Could not compile files. Exiting."
-		exit
+	else
+		pushd bin
+		ok "jar cfv ../dist/$LIBRARY_NAME/library/$LIBRARY_NAME.jar *"
+		jar cfv ../dist/$LIBRARY_NAME/library/$LIBRARY_NAME.jar *
+		popd
 	fi;
-	pushd bin
-	ok "jar cfv ../dist/$LIBRARY_NAME/library/$LIBRARY_NAME.jar *"
-	jar cfv ../dist/$LIBRARY_NAME/library/$LIBRARY_NAME.jar *
-	popd
 }
 
 function libraryDist() {
