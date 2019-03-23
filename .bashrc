@@ -323,23 +323,27 @@ function setupLibrary() {
 }
 
 function libraryMake() {
+	# Attempt to setup library again to make sure rt.jar & core.jar files are present for compilation.
+	librarySetup
+
 	PWD=`pwd`
 	LIBRARY_NAME=`basename $PWD`
-	echo "javac -d bin -target 1.6 -source 1.6 -sourcepath src -cp lib/core.jar src/$LIBRARY_NAME/*.java  -bootclasspath lib/rt.jar"
+
+	ok "javac -d bin -target 1.6 -source 1.6 -sourcepath src -cp lib/core.jar src/$LIBRARY_NAME/*.java  -bootclasspath lib/rt.jar"
 	javac -d bin -target 1.6 -source 1.6 -sourcepath src -cp lib/core.jar src/$LIBRARY_NAME/*.java  -bootclasspath lib/rt.jar
 	if [ $? -ne 0 ];
 	then
-		echo -e "${RED}ERROR: ${NO_COLOR}Could not compile files. Exiting."
+		error "Could not compile files. Exiting."
 		exit
 	fi;
 	pushd bin
-	echo "jar cfv ../dist/$LIBRARY_NAME/library/$LIBRARY_NAME.jar *"
+	ok "jar cfv ../dist/$LIBRARY_NAME/library/$LIBRARY_NAME.jar *"
 	jar cfv ../dist/$LIBRARY_NAME/library/$LIBRARY_NAME.jar *
 	popd
 }
 
 function libraryDist() {
 	SKETCHBOOK_LIBRARIES_FOLDER="/Users/Brandon/Documents/Processing/libraries"
-	echo "cp -R dist/* $SKETCHBOOK_LIBRARIES_FOLDER"
+	ok "cp -R dist/* $SKETCHBOOK_LIBRARIES_FOLDER"
 	cp -R dist/* $SKETCHBOOK_LIBRARIES_FOLDER
 }
