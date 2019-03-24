@@ -34,8 +34,9 @@ false=1
 PS1='\[\e[0;32m\]\u@\h\[\033[00m\] \[\033[01;33m\]`shortpwd`\[\033[00m\] \[\033[01;35m\]`branchName`\[\033[00m\] -> '
 PWD=`pwd`
 BASENAME=`basename $PWD`
+JAR_NAME=`basename $PWD | cut -d "." -f1`
 # Replace any . with / to make recursive folder structure for java packaging
-LIBRARY_NAME=`echo $BASENAME | sed "s|\.|/|"`
+LIBRARY_FOLDER_STRUCTURE=`echo $BASENAME | sed "s|\.|/|"`
 
 #########################
 # misc functions        #
@@ -56,8 +57,8 @@ function warn() {
 
 function cpIfNotExists() {
 	if [ ! -f $2 ]; then
-		ok "cp $1 $2"
 		cp $1 $2
+		checkReturn "cp $1 $2"
 	else
 		warn "$2 already exists. Not copying again."
 	fi
@@ -65,10 +66,19 @@ function cpIfNotExists() {
 
 function mkdirIfNotExists() {
 	if [ ! -d $1 ]; then
-		ok "mkdir -p $1"
 		mkdir -p $1
+		checkReturn "mkdir -p $1"
 	else
 		warn "$1 already exists. Not creating directory again."
+	fi
+}
+
+function checkReturn() {
+	if [ $? -ne 0 ];
+	then
+		error $@
+	else
+		ok $@
 	fi
 }
 
@@ -309,11 +319,18 @@ function gss {
 # Processing helpers    #
 #########################
 
+function libraryClean() {
+	rm -rf bin/
+	checkReturn "rm -rf bin/"
+	rm -rf dist/
+	checkReturn "rm -rf dust/"
+}
+
 function setupLibrary() {
-	mkdirIfNotExists bin/$LIBRARY_NAME
-	mkdirIfNotExists dist/$LIBRARY_NAME/library
+	mkdirIfNotExists bin/$LIBRARY_FOLDER_STRUCTURE
+	mkdirIfNotExists dist/$JAR_NAME/library
 	mkdirIfNotExists lib
-	mkdirIfNotExists src/$LIBRARY_NAME
+	mkdirIfNotExists src/$LIBRARY_FOLDER_STRUCTURE
 
 	# Example: /Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib
 	JVM_DIR="/Library/Java/JavaVirtualMachines"
@@ -325,19 +342,14 @@ function setupLibrary() {
 
 function libraryMake() {
 	# Attempt to setup library again to make sure rt.jar & core.jar files are present for compilation.
-	librarySetup
+	setupLibrary
 
-	ok "javac -d bin -target 1.6 -source 1.6 -sourcepath src -cp lib/core.jar src/$LIBRARY_NAME/*.java  -bootclasspath lib/rt.jar"
-	javac -d bin -target 1.6 -source 1.6 -sourcepath src -cp lib/core.jar src/$LIBRARY_NAME/*.java  -bootclasspath lib/rt.jar
-	if [ $? -ne 0 ];
-	then
-		error "Could not compile files. Exiting."
-	else
-		pushd bin
-		ok "jar cfv ../dist/$LIBRARY_NAME/library/$LIBRARY_NAME.jar *"
-		jar cfv ../dist/$LIBRARY_NAME/library/$LIBRARY_NAME.jar *
-		popd
-	fi;
+	javac -d bin -target 1.6 -source 1.6 -sourcepath src -cp lib/core.jar src/$LIBRARY_FOLDER_STRUCTURE/*.java  -bootclasspath lib/rt.jar
+	checkReturn "javac -d bin -target 1.6 -source 1.6 -sourcepath src -cp lib/core.jar src/$LIBRARY_FOLDER_STRUCTURE/*.java  -bootclasspath lib/rt.jar"
+	pushd bin
+	jar cfv ../dist/$JAR_NAME/library/$JAR_NAME.jar *
+	checkReturn "jar cfv ../dist/$JAR_NAME/library/$JAR_NAME.jar *"
+	popd
 }
 
 function libraryDist() {
