@@ -85,9 +85,9 @@ function checkReturn() {
 function hidedotfiles() {
 	if isMac;
 	then
-		echo "defaults write com.apple.finder AppleShowAllFiles NO"
+		ok "defaults write com.apple.finder AppleShowAllFiles NO"
 		defaults write com.apple.finder AppleShowAllFiles NO
-		echo "killall Finder /System/Library/CoreServices/Finder.app"
+		ok "killall Finder /System/Library/CoreServices/Finder.app"
 		killall Finder /System/Library/CoreServices/Finder.app
 	fi;
 }
@@ -95,9 +95,9 @@ function hidedotfiles() {
 function showdotfiles() {
 	if isMac;
 	then
-		echo "defaults write com.apple.finder AppleShowAllFiles YES"
+		ok "defaults write com.apple.finder AppleShowAllFiles YES"
 		defaults write com.apple.finder AppleShowAllFiles YES
-		echo "killall Finder /System/Library/CoreServices/Finder.app"
+		ok "killall Finder /System/Library/CoreServices/Finder.app"
 		killall Finder /System/Library/CoreServices/Finder.app
 	fi;
 }
@@ -154,37 +154,37 @@ function isWindows() {
 function sourceme() {
 	if isMac;
 	then
-		echo "source ~/.bash_profile"
+		ok "source ~/.bash_profile"
 		source ~/.bash_profile
 	fi;
 
 	if isWindows;
 	then
-		echo "source ~/.bashrc"
+		ok "source ~/.bashrc"
 		source ~/.bashrc
 	fi;
 }
 
 function killdotnet() {
     dotnet build-server shutdown
-	echo "Found dotnet processes: $(ps aux | grep 'dotnet' | awk '{print $1}')"
+	ok "Found dotnet processes: $(ps aux | grep 'dotnet' | awk '{print $1}')"
 	kill $(ps aux | grep 'dotnet' | awk '{print $1}')
 }
 
 function killnode() {
-	echo "Found node processes: $(ps aux | grep 'node' | awk '{print $2}')"
+	ok "Found node processes: $(ps aux | grep 'node' | awk '{print $2}')"
 	kill $(ps aux | grep 'node' | awk '{print $2}')
 }
 
 function cpbashrc() {
 	if isMac;
 	then
-		echo "cp ~/configuration/.bashrc ~/.bash_profile"
+		ok "cp ~/configuration/.bashrc ~/.bash_profile"
 		cp ~/configuration/.bashrc ~/.bash_profile
 	fi;
 	if isWindows;
 	then
-		echo "cp ~/configuration/.bashrc ~/.bashrc"
+		ok "cp ~/configuration/.bashrc ~/.bashrc"
 		cp ~/configuration/.bashrc ~/.bashrc
 	fi;
 }
@@ -192,13 +192,13 @@ function cpbashrc() {
 function cpvscode() {
 	if isMac;
 	then
-		echo "cp ~/configuration/vscode/settings.json ~/Library/Application Support/Code/User/"
+		ok "cp ~/configuration/vscode/settings.json ~/Library/Application Support/Code/User/"
 		cp ~/configuration/vscode/settings.json ~/Library/"Application Support"/Code/User/
 	fi;
 
 	if isWindows;
 	then
-		echo "cp ~/configuration/vscode/settings.json $APPDATA/Code/User/"
+		ok "cp ~/configuration/vscode/settings.json $APPDATA/Code/User/"
 		cp ~/configuration/vscode/settings.json $APPDATA/Code/User/
 	fi;
 }
@@ -222,12 +222,12 @@ function gcj() {
 		if [[ $1 == "--soft" ]] || [[ $1 == "-s" ]];
 		then
 			shift
-			echo "git commit -m \"$JIRA_TASK $@\""
+			ok "git commit -m \"$JIRA_TASK $@\""
 		else
 			git commit -m "$JIRA_TASK $@"
 		fi
 	else
-		echo "No git repository found."
+		warn "No git repository found."
 	fi
 }
 
@@ -271,12 +271,7 @@ function gm() {
 }
 
 function gp() {
-	if isWindows;
-	then
-		echo `git push $@` | grep "https" | cut -d " " -f4 > /dev/clipboard
-	else
-		git push $@
-	fi
+	git push $@
 }
 
 function grh() {
