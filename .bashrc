@@ -248,10 +248,17 @@ function gcb() {
 }
 
 # gbd($@)
-# deletes a local branch (or list of branches separated by spaces)
+# deletes a branch (or list of branches separated by spaces)
 function gbd() {
+	if [[ $1 == "--remote" ]] || [[ $1 == "-r" ]];
+	then
+		shift
+		gbdr $@
+	fi
+
 	for branchName in "$@"
 	do
+		ok "git branch -D $branchName"
 		git branch -D $branchName
 	done
 }
@@ -259,7 +266,11 @@ function gbd() {
 # gbdr($1)
 # deletes a remote branch from the origin repository
 function gbdr() {
-	git push --delete origin $1
+	for branchName in "$@"
+	do
+		warn "git push --delete origin $branchName"
+		git push --delete origin $branchName
+	done
 }
 
 function gb() {
