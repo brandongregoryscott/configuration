@@ -42,7 +42,7 @@
 			"\t$2",
 			"});",
 			"",
-			"// #endregion $1",
+			"// #endregion $1"
 		],
 		"description": "Stubs out a describe call for a Jest test method"
 	},

@@ -203,6 +203,14 @@ function cpvscode() {
 	fi;
 }
 
+function cpsnippets() {
+	if isWindows;
+	then
+		ok "cp -r ~/configuration/vscode/snippets/* $APPDATA/Code/User/snippets/"
+		cp -r ~/configuration/vscode/snippets/* $APPDATA/Code/User/snippets/
+	fi;
+}
+
 #########################
 # git wrapper functions #
 #########################
