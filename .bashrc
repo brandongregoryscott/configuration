@@ -24,11 +24,6 @@ YELLOW="\033[1;33m"
 #########################
 # variables             #
 #########################
-
-dv="development"
-wv="working-"
-sv="staging-v1"
-pd="production-v1"
 true=0
 false=1
 PS1='\[\e[0;32m\]\u@\h\[\033[00m\] \[\033[01;33m\]`shortpwd`\[\033[00m\] \[\033[01;35m\]`branchName`\[\033[00m\] -> '
@@ -41,7 +36,6 @@ LIBRARY_FOLDER_STRUCTURE=`echo $BASENAME | sed "s|\.|/|"`
 #########################
 # misc functions        #
 #########################
-
 
 function error() {
 	echo -e "${RED}ERROR: ${NO_COLOR}$@"
@@ -215,14 +209,20 @@ function cpsnippets() {
 # git wrapper functions #
 #########################
 
+# gca()
+# amends a commit
 function gca() {
 	git commit --amend
 }
 
+# gcm($@)
+# commits staged files with a message
 function gcm() {
 	git commit -m "$@"
 }
 
+# gcj($@)
+# commits staged files with a message prefixed by a Jira PBI
 function gcj() {
 	if [[ -d .git ]];
 	then
@@ -247,8 +247,34 @@ function gf() {
 	git fetch
 }
 
+# gc($@)
+# checks out a file/branch/commit
 function gc() {
 	git checkout "$@"
+}
+
+# gcd()
+# checks out development branch
+function gcd() {
+	git checkout development
+}
+
+# gcw()
+# checks out working branch
+function gcw() {
+	git checkout working
+}
+
+# gcs()
+# checks out staging branch
+function gcs() {
+	git checkout staging
+}
+
+# gcp()
+# checks out production (master) branch
+function gcp() {
+	git checkout master
 }
 
 function gcb() {
@@ -285,8 +311,34 @@ function gb() {
 	git branch $@
 }
 
+# gm($1)
+# merges specified branch into the current one
 function gm() {
 	git merge $1
+}
+
+# gmd()
+# merges development branch into the current one
+function gmd() {
+	git merge development
+}
+
+# gmw()
+# merges working branch into the current one
+function gmw() {
+	git merge working
+}
+
+# gms()
+# merges staging branch into the current one
+function gms() {
+	git merge staging
+}
+
+# gmp()
+# merges production (master) branch into the current one
+function gmp() {
+	git merge master
 }
 
 function gp() {
