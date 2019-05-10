@@ -147,7 +147,7 @@
 	  "console log object": {
 		"prefix": "clo",
 		"body": [
-		  "console.log(`$1: ${$1}`);"
+		  "console.log('$1:', $1);"
 		],
 		"description": "console log object"
 	  },
