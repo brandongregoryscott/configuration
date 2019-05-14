@@ -320,25 +320,25 @@ function gm() {
 # gmd()
 # merges development branch into the current one
 function gmd() {
-	git merge development
+	git merge --no-edit development
 }
 
 # gmw()
 # merges working branch into the current one
 function gmw() {
-	git merge working
+	git merge --no-edit working
 }
 
 # gms()
 # merges staging branch into the current one
 function gms() {
-	git merge staging
+	git merge --no-edit staging
 }
 
 # gmp()
 # merges production (master) branch into the current one
 function gmp() {
-	git merge master
+	git merge --no-edit master
 }
 
 function gp() {
