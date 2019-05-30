@@ -12,7 +12,6 @@
 	// 	],
 	// 	"description": "Log output to console"
 	// }
-
 	"Private method": {
 		"prefix": "prvm",
 		"body": [
@@ -22,7 +21,6 @@
 		],
 		"description": "Private method"
 	},
-
 	"Private async method": {
 		"prefix": "pravm",
 		"body": [
@@ -32,7 +30,6 @@
 		],
 		"description": "Private async method"
 	},
-
 	"describe jest method": {
 		"prefix": "jdsc",
 		"body": [
@@ -46,7 +43,6 @@
 		],
 		"description": "Stubs out a describe call for a Jest test method"
 	},
-
 	"test jest method": {
 		"prefix": "jit",
 		"body": [
@@ -61,7 +57,6 @@
 		],
 		"description": "Stubs out an 'test' call for a Jest test method"
 	},
-
 	"test jest method - no arrange/act": {
 		"prefix": "jita",
 		"body": [
@@ -73,7 +68,6 @@
 		],
 		"description": "Stubs out an 'test' call for a Jest test method, without arrange/act section"
 	},
-
 	"wrapper.debug();": {
 		"prefix": "jdb",
 		"body": [
@@ -81,7 +75,6 @@
 		],
 		"description": "Stubs out a console log to print the debug tree of current wrapper"
 	},
-
 	"beforeEach(() => {});": {
 		"prefix": "jbe",
 		"body": [
@@ -91,73 +84,76 @@
 		],
 		"description": "Stubs out a beforeEach() function to run for a describe() block"
 	},
-
 	"New React Component": {
 		"prefix": "nc",
 		"body": [
-		  "import { CoreUtils } from \"@core/utilities/core-utils\";",
-		  "import * as React    from \"react\";",
-		  "",
-		  "// #region Interfaces",
-		  "",
-		  "export interface $1Props {",
-		  "}",
-		  "",
-		  "interface $1State {",
-		  "",
-		  "}",
-		  "",
-		  "",
-		  "// #endregion Interfaces",
-		  "",
-		  "class $1 extends React.PureComponent<$1Props, $1State> {",
-		  "    constructor(props: $1Props) {",
-		  "        super(props);",
-		  "",
-		  "        this.state = {",
-		  "        };",
-		  "",
-		  "        CoreUtils.bindAll(this);",
-		  "    }",
-		  "",
-		  "    public componentDidMount() {",
-		  "    }",
-		  "",
-		  "    public render() {",
-		  "        return (",
-		  "            null",
-		  "        );",
-		  "    }",
-		  "",
-		  "    // #region Private Methods",
-		  "",
-		  "    // #endregion Private Methods",
-		  "",
-		  "    // #region Event Handlers",
-		  "",
-		  "    // #endregion Event Handlers",
-		  "};",
-		  "",
-		  "export { $1 };",
-		  ""
+			"import { CoreUtils } from \"@core/utilities/core-utils\";",
+			"import * as React    from \"react\";",
+			"",
+			"// #region Interfaces",
+			"",
+			"export interface $1Props {",
+			"}",
+			"",
+			"interface $1State {",
+			"",
+			"}",
+			"",
+			"",
+			"// #endregion Interfaces",
+			"",
+			"class $1 extends React.PureComponent<$1Props, $1State> {",
+			"    constructor(props: $1Props) {",
+			"        super(props);",
+			"",
+			"        this.state = {",
+			"        };",
+			"",
+			"        CoreUtils.bindAll(this);",
+			"    }",
+			"",
+			"    public componentDidMount() {",
+			"    }",
+			"",
+			"    public render() {",
+			"        return (",
+			"            null",
+			"        );",
+			"    }",
+			"",
+			"    // #region Private Methods",
+			"",
+			"    // #endregion Private Methods",
+			"",
+			"    // #region Event Handlers",
+			"",
+			"    // #endregion Event Handlers",
+			"};",
+			"",
+			"export { $1 };",
+			""
 		],
 		"description": "New React Component"
-	  },
-
-	  "console log object": {
-		"prefix": "clo",
+	},
+	"react-router history mock": {
+		"prefix": "history",
 		"body": [
-		  "console.log('$1:', $1);"
+		  "let context;",
+		  "beforeEach(() => {",
+		  "    // Mocking react-router context to prevent 'history' being null for Link component",
+		  "    // https://stackoverflow.com/a/52533139",
+		  "    context = {",
+		  "        childContextTypes: {",
+		  "            router: () => void 0,",
+		  "        },",
+		  "        context: {",
+		  "            router: {",
+		  "                history: createMemoryHistory(),",
+		  "            },",
+		  "        },",
+		  "    };",
+		  "});"
 		],
-		"description": "console log object"
-	  },
-
-	  "Typescript region": {
-		"prefix": "//#",
-		"body": [
-		  "// #region $1",
-		  "",
-		  "// #endregion $1",
-		],
+		"description": "react-router history mock"
 	  }
 }

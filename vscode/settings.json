@@ -2,6 +2,7 @@
     //////////////////////////////////////////////////////////////
     // Editor/Misc Configuration                                //
     //////////////////////////////////////////////////////////////
+
     "csharp.referencesCodeLens.enabled": false,
     "editor.fontFamily": "Inconsolata, Consolas, 'Courier New', monospace",
     "editor.minimap.enabled": false,
@@ -9,16 +10,11 @@
     "editor.rulers": [100],
     "extensions.ignoreRecommendations": true,
     "window.zoomLevel": 0,
-    "workbench.iconTheme": "vscode-icons",
 
     //////////////////////////////////////////////////////////////
     // TSLint Extension                                         //
     //////////////////////////////////////////////////////////////
     "tslint.autoFixOnSave": true,
-    "typescript.extension.sortImports.maxNamedImportsInSingleLine": 1,
-    "typescript.extension.sortImports.quoteStyle": "double",
-    "typescript.extension.sortImports.sortMethod": "path",
-    "typescript.extension.sortImports.sortOnSave": false,
     "typescript.format.insertSpaceAfterOpeningAndBeforeClosingJsxExpressionBraces": false,
     "typescript.format.insertSpaceAfterOpeningAndBeforeClosingTemplateStringBraces": true,
     "typescript.format.insertSpaceAfterTypeAssertion": true,
@@ -117,5 +113,4 @@
     // Trailing-Spaces Extension                                //
     //////////////////////////////////////////////////////////////
     "trailing-spaces.trimOnSave": true,
-    "trailing-spaces.saveAfterTrim": true
 }
