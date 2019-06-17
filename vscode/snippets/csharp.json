@@ -1,0 +1,12 @@
+{
+	"DI CRUD Conductor": {
+		"prefix": "di",
+		"body": [
+			"private readonly IRepository$3Conductor<$1> _$2$3Conductor;",
+			"",
+			"IRepository$3Conductor<$1> $2$3Conductor,",
+			"",
+			"_$2$3Conductor = $2$3Conductor;",
+		]
+	}
+}
