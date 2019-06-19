@@ -171,38 +171,86 @@ function killnode() {
 }
 
 function cpbashrc() {
-	if isMac;
+	if [[ $# -eq 0 ]] || [[ $1 == "--repo-to-local" ]] || [[ $1 == "-r" ]];
 	then
-		ok "cp ~/configuration/.bashrc ~/.bash_profile"
-		cp ~/configuration/.bashrc ~/.bash_profile
+		if isMac;
+		then
+			ok "cp ~/configuration/.bashrc ~/.bash_profile"
+			cp ~/configuration/.bashrc ~/.bash_profile
+		fi;
+		if isWindows;
+		then
+			ok "cp ~/configuration/.bashrc ~/.bashrc"
+			cp ~/configuration/.bashrc ~/.bashrc
+		fi;
 	fi;
-	if isWindows;
+
+	if [[ $1 == "--local-to-repo" ]] || [[ $1 == "-l" ]];
 	then
-		ok "cp ~/configuration/.bashrc ~/.bashrc"
-		cp ~/configuration/.bashrc ~/.bashrc
+		if isMac;
+		then
+			ok "cp ~/.bash_profile ~/configuration/.bashrc"
+			cp ~/.bash_profile ~/configuration/.bashrc
+		fi;
+		if isWindows;
+		then
+			ok "cp ~/.bashrc ~/configuration/.bashrc"
+			cp ~/.bashrc ~/configuration/.bashrc
+		fi;
 	fi;
 }
 
 function cpvscode() {
-	if isMac;
+	if [[ $# -eq 0 ]] || [[ $1 == "--repo-to-local" ]] || [[ $1 == "-r" ]];
 	then
-		ok "cp ~/configuration/vscode/settings.json ~/Library/Application Support/Code/User/"
-		cp ~/configuration/vscode/settings.json ~/Library/"Application Support"/Code/User/
+		if isMac;
+		then
+			ok "cp ~/configuration/vscode/settings.json ~/Library/Application Support/Code/User/"
+			cp ~/configuration/vscode/settings.json ~/Library/"Application Support"/Code/User/
+		fi;
+
+		if isWindows;
+		then
+			ok "cp ~/configuration/vscode/settings.json $APPDATA/Code/User/"
+			cp ~/configuration/vscode/settings.json $APPDATA/Code/User/
+		fi;
 	fi;
 
-	if isWindows;
+	if [[ $1 == "--local-to-repo" ]] || [[ $1 == "-l" ]];
 	then
-		ok "cp ~/configuration/vscode/settings.json $APPDATA/Code/User/"
-		cp ~/configuration/vscode/settings.json $APPDATA/Code/User/
+		if isMac;
+		then
+			ok "cp ~/Library/Application Support/Code/User/settings.json ~/configuration/vscode/"
+			cp ~/Library/"Application Support"/Code/User/settings.json ~/configuration/vscode/
+		fi;
+
+		if isWindows;
+		then
+			ok "cp $APPDATA/Code/User/settings.json ~/configuration/vscode/"
+			cp $APPDATA/Code/User/settings.json ~/configuration/vscode/
+		fi;
 	fi;
 }
 
 function cpsnippets() {
-	if isWindows;
+	if [[ $# -eq 0 ]] || [[ $1 == "--repo-to-local" ]] || [[ $1 == "-r" ]];
 	then
-		ok "cp -r ~/configuration/vscode/snippets/* $APPDATA/Code/User/snippets/"
-		cp -r ~/configuration/vscode/snippets/* $APPDATA/Code/User/snippets/
+		if isWindows;
+		then
+			ok "cp -r ~/configuration/vscode/snippets/* $APPDATA/Code/User/snippets/"
+			cp -r ~/configuration/vscode/snippets/* $APPDATA/Code/User/snippets/
+		fi;
 	fi;
+
+	if [[ $1 == "--local-to-repo" ]] || [[ $1 == "-l" ]];
+	then
+		if isWindows;
+		then
+			ok "cp -r $APPDATA/Code/User/snippets/ ~/configuration/vscode/"
+			cp -r $APPDATA/Code/User/snippets/ ~/configuration/vscode/
+		fi;
+	fi;
+
 }
 
 #########################
