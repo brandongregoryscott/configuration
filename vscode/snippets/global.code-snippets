@@ -41,4 +41,16 @@
 		],
 		"description": "console log object"
 	},
+	"NOTE: THIS is the important setup for this test": {
+		"prefix": "//N",
+		"body": [
+			"// NOTE: THIS is the important setup for this test",
+		],
+	},
+	"BSCOTT TODO": {
+		"prefix": "//B",
+		"body": [
+			"// BSCOTT: $1",
+		],
+	},
 }

@@ -113,4 +113,22 @@
     // Trailing-Spaces Extension                                //
     //////////////////////////////////////////////////////////////
     "trailing-spaces.trimOnSave": true,
+
+    //////////////////////////////////////////////////////////////
+    // TODO Highlight                                           //
+    //////////////////////////////////////////////////////////////
+    "todohighlight.keywords": [
+        {
+            "text": "NOTE",
+            "color": "#000000",
+            "backgroundColor": "yellow",
+            "overviewRulerColor": "grey"
+        },
+        {
+            "text": "BSCOTT",
+            "color": "#000000",
+            "backgroundColor": "yellow",
+            "overviewRulerColor": "grey"
+        },
+    ]
 }
