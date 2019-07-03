@@ -53,4 +53,51 @@
 			"// BSCOTT: $1",
 		],
 	},
+	"test jest method": {
+		"prefix": "jit",
+		"body": [
+			"test(\"$1\", (done) => {",
+			"\t// Arrange & Act",
+			"\tconst wrapper = $2();",
+			"",
+			"\t// Assert",
+			"\texpect($3).toBe($4);",
+			"\tdone();",
+			"});"
+		],
+		"description": "Stubs out an 'test' call for a Jest test method"
+	},
+	"test jest method - no arrange/act": {
+		"prefix": "jita",
+		"body": [
+			"test(\"$1\", (done) => {",
+			"\t// Assert",
+			"\texpect($2).toBe($3);",
+			"\tdone();",
+			"});"
+		],
+		"description": "Stubs out an 'test' call for a Jest test method, without arrange/act section"
+	},
+	"beforeEach(() => {});": {
+		"prefix": "jbe",
+		"body": [
+			"beforeEach(() => {",
+			"\t",
+			"});",
+		],
+		"description": "Stubs out a beforeEach() function to run for a describe() block"
+	},
+	"describe jest method": {
+		"prefix": "jdsc",
+		"body": [
+			"// #region $1",
+			"",
+			"describe(\"$1\", () => {",
+			"\t$2",
+			"});",
+			"",
+			"// #endregion $1"
+		],
+		"description": "Stubs out a describe call for a Jest test method"
+	},
 }
