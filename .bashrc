@@ -292,6 +292,14 @@ function gd() {
 }
 
 function gf() {
+	if [[ $1 == "--remote-to-local" ]] || [[ $1 == "-r" ]];
+	then
+		for remote in `git branch -r | grep -v '\->'`;
+		do 
+			git branch --track ${remote#origin/} $remote 
+		done
+		return
+	fi
 	git fetch
 }
 
