@@ -437,6 +437,9 @@ function gss {
 	fi
 }
 
+# checkAllGitDirectories($dir)
+# Recursively finds all git directories and checks for unstaged changes, staged + uncommitted changes,
+# and untracked files.
 function checkAllGitDirectories() {
 	if [[ "$#" -lt 1 ]];
 	then
