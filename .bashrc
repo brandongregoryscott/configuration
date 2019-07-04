@@ -443,10 +443,9 @@ function checkAllGitDirectories() {
 		error "No directory provided."
 		return
 	fi;
-
-	find $1 -name ".git" -type d -print 2> /dev/null | while read GIT_DIR
+	find $1 -name ".git" -type d 2> /dev/null | while read GIT_DIR 
 	do
-		BASE_DIR=`echo "$GIT_DIR" | rev | cut -d "/" -f 2-100 | rev`
+		BASE_DIR=`echo $GIT_DIR | rev | cut -d "/" -f 2-100 | rev`
 		checkForUnstagedChanges $BASE_DIR
 		checkForStagedUncommittedChanges $BASE_DIR
 		checkForUntrackedFiles $BASE_DIR
@@ -460,13 +459,11 @@ function checkForUnstagedChanges() {
 		return
 	fi;
 
-	cd "$@"
-	git diff --exit-code &>2
+	cd $@
+	git diff --exit-code &> /dev/null
 
-	if [[ $? -eq 0 ]];
+	if [[ $? -ne 0 ]]
 	then
-		ok "There are no unstashed changes in $@"
-	else
 		warn "There are unstashed changes in $@"
 	fi
 }
@@ -478,14 +475,12 @@ function checkForStagedUncommittedChanges() {
 		return
 	fi;
 
-	cd "$@"
-	git diff --cached --exit-code &>2
+	cd $@
+	git diff --cached --exit-code &> /dev/null
 
-	if [[ $? -eq 0 ]];
+	if [[ $? -ne 0 ]]
 	then
-		ok "There are no staged, uncommitted changes in $@"
-	else
-		warn "There are staged, uncommitted  changes in $@"
+		warn "There are staged, uncommitted changes in $@"
 	fi
 }
 
@@ -499,10 +494,8 @@ function checkForUntrackedFiles() {
 	cd "$@"
 	COUNT=`git ls-files --other --exclude-standard --directory | wc -l`
 
-	if [[ $COUNT -eq 0 ]];
+	if [[ $? -ne 0 ]]
 	then
-		ok "There are no untracked files in $@"
-	else
 		warn "There are untracked files in $@"
 	fi
 }
