@@ -429,6 +429,73 @@ function gss {
 	fi
 }
 
+function checkAllGitDirectories() {
+	DIRECTORIES=`find ~ -name ".git" -type d -print`
+	for GIT_DIR in $DIRECTORIES;
+	do
+		BASE_DIR=`echo $GIT_DIR | rev | cut -d "/" -f 2-100 | rev`
+		checkForUnstagedChanges $BASE_DIR
+		checkForStagedUncommittedChanges $BASE_DIR
+		checkForUntrackedFiles $BASE_DIR
+	done
+}
+
+function checkForUnstagedChanges() {
+	if [[ "$#" -lt 1 ]];
+	then
+		error "No directory provided."
+		return
+	fi;
+
+	cd $1
+	git diff --exit-code &>2
+	cd -
+	if [ $? -eq 0 ];
+	then
+		ok "There are no unstashed changes in $1"
+	else
+		warn "There are unstashed changes in $1"
+	fi
+}
+
+function checkForStagedUncommittedChanges() {
+	if [[ "$#" -lt 1 ]];
+	then
+		error "No directory provided."
+		return
+	fi;
+
+	cd $1
+	git diff --cached --exit-code &>2
+	cd -
+
+	if [ $? -eq 0 ];
+	then
+		ok "There are no staged, uncommitted changes in $1"
+	else
+		warn "There are staged, uncommitted  changes in $1"
+	fi
+}
+
+function checkForUntrackedFiles() {
+	if [[ "$#" -lt 1 ]];
+	then
+		error "No directory provided."
+		return
+	fi;
+
+	cd $1
+	COUNT=`git ls-files --other --exclude-standard --directory | wc -l`
+	cd -
+
+	if [[ $COUNT -eq 0 ]];
+	then
+		ok "There are no untracked files in $1"
+	else
+		warn "There are untracked files in $1"
+	fi
+}
+
 #########################
 # Processing helpers    #
 #########################
