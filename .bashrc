@@ -471,3 +471,40 @@ function libraryDist() {
 	ok "cp -R dist/* $SKETCHBOOK_LIBRARIES_FOLDER"
 	cp -R dist/* $SKETCHBOOK_LIBRARIES_FOLDER
 }
+
+#########################
+# mkdrumkit			    #
+#########################
+
+function mkdrumkit() {
+	IFS=$'\n'
+    TMP=tmp.mkdrumkit
+	COUNT=0
+    rm -rf $TMP
+    mkdir $TMP
+    for FILE in `find . -type f | grep .wav`;
+    do
+		let "COUNT++"
+        # FILENAME=`echo $FILE | sed 's/\.\///g'`
+        echo Converting $FILE in $TMP to $COUNT.wav
+		# Converts file just incase file has errors
+        ffmpeg -i $FILE -ac 2 -f wav "$TMP/$COUNT.wav" &> /dev/null
+    done
+	# echo Joining files in $TMP
+	# cd $TMP
+	# JOINED_FILE=joined.wav
+	# shnjoin 1.wav 2.wav
+	# let "COUNT=0"
+	# for FILE in `find . -type f | grep .wav`;
+    # do
+	# 	let "COUNT++"
+	# 	CURRENT_FILE="$COUNT.wav"
+	# 	echo "Joining $CURRENT_FILE with $JOINED_FILE"
+	# 	shnjoin -O always $CURRENT_FILE $JOINED_FILE
+	# done
+	# echo Moving joined file back into parent directory
+	# mv $JOINED_FILE ..
+	# echo Cleaning up $TMP
+	# cd ..
+	# rm -rf $TMP
+}
