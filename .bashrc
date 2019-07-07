@@ -295,8 +295,8 @@ function gf() {
 	if [[ $1 == "--remote-to-local" ]] || [[ $1 == "-r" ]];
 	then
 		for remote in `git branch -r | grep -v '\->'`;
-		do 
-			git branch --track ${remote#origin/} $remote 
+		do
+			git branch --track ${remote#origin/} $remote
 		done
 		return
 	fi
@@ -446,13 +446,16 @@ function checkAllGitDirectories() {
 		error "No directory provided."
 		return
 	fi;
-	find $1 -name ".git" -type d 2> /dev/null | while read GIT_DIR 
+	SAVEIFS=$IFS
+	IFS=$(echo -en "\n\b")
+	find $1 -name ".git" -type d 2> /dev/null | while read GIT_DIR
 	do
 		BASE_DIR=`echo $GIT_DIR | rev | cut -d "/" -f 2-100 | rev`
 		checkForUnstagedChanges $BASE_DIR
 		checkForStagedUncommittedChanges $BASE_DIR
 		checkForUntrackedFiles $BASE_DIR
 	done
+	IFS=$SAVEIFS
 }
 
 function checkForUnstagedChanges() {
@@ -462,7 +465,7 @@ function checkForUnstagedChanges() {
 		return
 	fi;
 
-	cd $@
+	cd "$@"
 	git diff --exit-code &> /dev/null
 
 	if [[ $? -ne 0 ]]
