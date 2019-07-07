@@ -500,7 +500,7 @@ function checkForUntrackedFiles() {
 	cd "$@"
 	COUNT=`git ls-files --other --exclude-standard --directory | wc -l`
 
-	if [[ $? -ne 0 ]]
+	if [[ $COUNT -ne 0 ]]
 	then
 		warn "There are untracked files in $@"
 	fi
