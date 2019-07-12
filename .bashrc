@@ -26,7 +26,7 @@ YELLOW="\033[1;33m"
 #########################
 true=0
 false=1
-PS1='\[\e[0;32m\]\u@\h\[\033[00m\] \[\033[01;33m\]`shortpwd`\[\033[00m\] \[\033[01;35m\]`branchName`\[\033[00m\] -> '
+PS1='\[\e[0;32m\]\u@\h\[\033[00m\] \[\033[01;33m\]`shortpwd`\[\033[00m\]\[\033[01;35m\]`branchName`\[\033[00m\]-> '
 PWD=`pwd`
 BASENAME=`basename $PWD`
 JAR_NAME=`basename $PWD | cut -d "." -f1`
@@ -119,9 +119,9 @@ function branchName() {
 	if [[ -d .git ]];
 	then
 		BRANCH_NAME=`git branch | grep "* " | sed "s/* //g"`
-		echo "($BRANCH_NAME)"
+		echo " ($BRANCH_NAME) "
 	else
-		echo ""
+		echo " "
 	fi
 }
 
