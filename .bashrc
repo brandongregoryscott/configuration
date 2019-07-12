@@ -32,6 +32,7 @@ BASENAME=`basename $PWD`
 JAR_NAME=`basename $PWD | cut -d "." -f1`
 # Replace any . with / to make recursive folder structure for java packaging
 LIBRARY_FOLDER_STRUCTURE=`echo $BASENAME | sed "s|\.|/|"`
+export PATH="/apps/:/apps/processing-3.5.3/:$PATH"
 
 #########################
 # misc functions        #
@@ -125,7 +126,7 @@ function branchName() {
 	fi
 }
 
-function isLinx() {
+function isLinux() {
 	uname=`uname`
 	if [[ $uname == "Linux" ]];
 	then
@@ -188,7 +189,7 @@ function cpbashrc() {
 			ok "cp ~/configuration/.bashrc ~/.bash_profile"
 			cp ~/configuration/.bashrc ~/.bash_profile
 		fi;
-		if [[ isWindows || isLinx ]];
+		if [[ isWindows || isLinux ]];
 		then
 			ok "cp ~/configuration/.bashrc ~/.bashrc"
 			cp ~/configuration/.bashrc ~/.bashrc
@@ -202,7 +203,7 @@ function cpbashrc() {
 			ok "cp ~/.bash_profile ~/configuration/.bashrc"
 			cp ~/.bash_profile ~/configuration/.bashrc
 		fi;
-		if [[ isWindows || isLinx ]];
+		if [[ isWindows || isLinux ]];
 		then
 			ok "cp ~/.bashrc ~/configuration/.bashrc"
 			cp ~/.bashrc ~/configuration/.bashrc
