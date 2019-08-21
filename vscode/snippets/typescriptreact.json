@@ -74,7 +74,7 @@
 			"",
 			"    // #region Public Methods",
 			"",
-			"    public componentDidMount() {",
+			"    public componentDidMount(): void {",
 			"        // TODO: Fill out this block if necessary",
 			"    }",
 			"",
