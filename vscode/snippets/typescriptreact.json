@@ -15,7 +15,7 @@
 	"Private method": {
 		"prefix": "prvm",
 		"body": [
-			"private _$1() {",
+			"private _$1(): void {",
 			"\t$2",
 			"}"
 		],
@@ -24,7 +24,7 @@
 	"Private async method": {
 		"prefix": "pravm",
 		"body": [
-			"private async _$1() {",
+			"private async _$1(): void {",
 			"\t$2",
 			"}"
 		],
@@ -78,7 +78,7 @@
 			"        // TODO: Fill out this block if necessary",
 			"    }",
 			"",
-			"    public render() {",
+			"    public render(): JSX.Element {",
 			"        return (",
 			"            null",
 			"        );",
