@@ -450,7 +450,7 @@ function gss {
 
 # gsp($stash?)
 # git stash pop (optionally, number of stashes behind to pop)
-function gss {
+function gsp {
 	if [[ $# -eq 0 ]];
 	then
 		git stash pop
