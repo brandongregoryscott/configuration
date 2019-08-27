@@ -448,6 +448,17 @@ function gss {
 	fi
 }
 
+# gsp($stash?)
+# git stash pop (optionally, number of stashes behind to pop)
+function gss {
+	if [[ $# -eq 0 ]];
+	then
+		git stash pop
+	else
+		git stash pop stash@{$1}
+	fi
+}
+
 # checkAllGitDirectories($dir)
 # Recursively finds all git directories and checks for unstaged changes, staged + uncommitted changes,
 # and untracked files.
