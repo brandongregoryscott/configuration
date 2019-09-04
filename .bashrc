@@ -26,12 +26,13 @@ YELLOW="\033[1;33m"
 #########################
 true=0
 false=1
-PS1='\[\e[0;32m\]\u@\h\[\033[00m\] \[\033[01;33m\]`shortpwd`\[\033[00m\] \[\033[01;35m\]`branchName`\[\033[00m\] -> '
+PS1='\[\e[0;32m\]\u@\h\[\033[00m\] \[\033[01;33m\]`shortpwd`\[\033[00m\]\[\033[01;35m\]`branchName`\[\033[00m\]-> '
 PWD=`pwd`
 BASENAME=`basename $PWD`
 JAR_NAME=`basename $PWD | cut -d "." -f1`
 # Replace any . with / to make recursive folder structure for java packaging
 LIBRARY_FOLDER_STRUCTURE=`echo $BASENAME | sed "s|\.|/|"`
+export PATH="/apps/:/apps/processing-3.5.3/:$PATH"
 
 #########################
 # misc functions        #
@@ -119,9 +120,19 @@ function branchName() {
 	if [[ -d .git ]];
 	then
 		BRANCH_NAME=`git branch | grep "* " | sed "s/* //g"`
-		echo "($BRANCH_NAME)"
+		echo " ($BRANCH_NAME) "
 	else
-		echo ""
+		echo " "
+	fi
+}
+
+function isLinux() {
+	uname=`uname`
+	if [[ $uname == "Linux" ]];
+	then
+		return $true
+	else
+		return $false
 	fi
 }
 
@@ -178,7 +189,7 @@ function cpbashrc() {
 			ok "cp ~/configuration/.bashrc ~/.bash_profile"
 			cp ~/configuration/.bashrc ~/.bash_profile
 		fi;
-		if isWindows;
+		if [[ isWindows || isLinux ]];
 		then
 			ok "cp ~/configuration/.bashrc ~/.bashrc"
 			cp ~/configuration/.bashrc ~/.bashrc
@@ -192,7 +203,7 @@ function cpbashrc() {
 			ok "cp ~/.bash_profile ~/configuration/.bashrc"
 			cp ~/.bash_profile ~/configuration/.bashrc
 		fi;
-		if isWindows;
+		if [[ isWindows || isLinux ]];
 		then
 			ok "cp ~/.bashrc ~/configuration/.bashrc"
 			cp ~/.bashrc ~/configuration/.bashrc
@@ -292,6 +303,14 @@ function gd() {
 }
 
 function gf() {
+	if [[ $1 == "--remote-to-local" ]] || [[ $1 == "-r" ]];
+	then
+		for remote in `git branch -r | grep -v '\->'`;
+		do
+			git branch --track ${remote#origin/} $remote
+		done
+		return
+	fi
 	git fetch
 }
 
@@ -426,6 +445,75 @@ function gss {
 		git stash show -p
 	else
 		git stash show -p stash@{$1}
+	fi
+}
+
+# checkAllGitDirectories($dir)
+# Recursively finds all git directories and checks for unstaged changes, staged + uncommitted changes,
+# and untracked files.
+function checkAllGitDirectories() {
+	if [[ "$#" -lt 1 ]];
+	then
+		error "No directory provided."
+		return
+	fi;
+	SAVEIFS=$IFS
+	IFS=$(echo -en "\n\b")
+	find $1 -name ".git" -type d 2> /dev/null | while read GIT_DIR
+	do
+		BASE_DIR=`echo $GIT_DIR | rev | cut -d "/" -f 2-100 | rev`
+		checkForUnstagedChanges $BASE_DIR
+		checkForStagedUncommittedChanges $BASE_DIR
+		checkForUntrackedFiles $BASE_DIR
+	done
+	IFS=$SAVEIFS
+}
+
+function checkForUnstagedChanges() {
+	if [[ "$#" -lt 1 ]];
+	then
+		error "No directory provided."
+		return
+	fi;
+
+	cd "$@"
+	git diff --exit-code &> /dev/null
+
+	if [[ $? -ne 0 ]]
+	then
+		warn "There are unstashed changes in $@"
+	fi
+}
+
+function checkForStagedUncommittedChanges() {
+	if [[ "$#" -lt 1 ]];
+	then
+		error "No directory provided."
+		return
+	fi;
+
+	cd $@
+	git diff --cached --exit-code &> /dev/null
+
+	if [[ $? -ne 0 ]]
+	then
+		warn "There are staged, uncommitted changes in $@"
+	fi
+}
+
+function checkForUntrackedFiles() {
+	if [[ "$#" -lt 1 ]];
+	then
+		error "No directory provided."
+		return
+	fi;
+
+	cd "$@"
+	COUNT=`git ls-files --other --exclude-standard --directory | wc -l`
+
+	if [[ $COUNT -ne 0 ]]
+	then
+		warn "There are untracked files in $@"
 	fi
 }
 
