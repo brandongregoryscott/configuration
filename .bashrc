@@ -408,9 +408,11 @@ function gmp() {
 	git merge --no-edit master
 }
 
+# gp
+# pushes commits to remote branch
 function gp() {
-	git push $@
-	# Test
+	OUTPUT=$(git push $@ 2>&1)
+	echo -e "$OUTPUT" | sed "s/\&t=1/\&t=1\&dest=development/g"
 }
 
 function grh() {
