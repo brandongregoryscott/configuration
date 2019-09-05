@@ -410,6 +410,7 @@ function gmp() {
 
 function gp() {
 	git push $@
+	# Test
 }
 
 function grh() {
@@ -578,7 +579,7 @@ function libraryDist() {
 function mkdrumkit() {
 	ORIG_IFS=$IFS
 	IFS=$'\n'
-	
+
     TMP=tmp.mkdrumkit
     rm -rf $TMP
     mkdir $TMP
