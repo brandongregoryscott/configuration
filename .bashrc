@@ -565,34 +565,36 @@ function libraryDist() {
 #########################
 
 function mkdrumkit() {
+	ORIG_IFS=$IFS
 	IFS=$'\n'
+	
     TMP=tmp.mkdrumkit
-	COUNT=0
     rm -rf $TMP
     mkdir $TMP
-    for FILE in `find . -type f | grep .wav`;
+
+	COUNT=0
+    for FILE in `find . -type f | grep .wav | grep -v joined.wav`;
     do
 		let "COUNT++"
         # FILENAME=`echo $FILE | sed 's/\.\///g'`
-        echo Converting $FILE in $TMP to $COUNT.wav
 		# Converts file just incase file has errors
-        ffmpeg -i $FILE -ac 2 -f wav "$TMP/$COUNT.wav" &> /dev/null
+        ffmpeg -i $FILE -ac 2 -f wav -ar 48000 "$TMP/$COUNT.wav" &> /dev/null
+		checkReturn "$FILE => $TMP/$COUNT.wav"
     done
-	# echo Joining files in $TMP
-	# cd $TMP
-	# JOINED_FILE=joined.wav
-	# shnjoin 1.wav 2.wav
-	# let "COUNT=0"
-	# for FILE in `find . -type f | grep .wav`;
-    # do
-	# 	let "COUNT++"
-	# 	CURRENT_FILE="$COUNT.wav"
-	# 	echo "Joining $CURRENT_FILE with $JOINED_FILE"
-	# 	shnjoin -O always $CURRENT_FILE $JOINED_FILE
-	# done
-	# echo Moving joined file back into parent directory
-	# mv $JOINED_FILE ..
-	# echo Cleaning up $TMP
-	# cd ..
-	# rm -rf $TMP
+
+	pushd $TMP
+
+	FILES=`find . -type f | egrep "(([1-9]+)|([1]{1}[0-9]+))(.wav)"`
+	shnjoin -O always $FILES
+	checkReturn "Joined all files"
+
+	mv joined.wav ..
+	checkReturn "Moving joined file back into parent directory"
+
+	popd
+
+	rm -rf $TMP
+	checkReturn "Cleaning up $TMP"
+
+	IFS=$ORIG_IFS
 }
