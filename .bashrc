@@ -584,7 +584,7 @@ function mkdrumkit() {
     mkdir $TMP
 
 	COUNT=0
-    for FILE in `find . -type f | grep .wav | grep -v joined.wav`;
+    for FILE in `find . -type f | grep .wav | grep -v joined.wav | sort`;
     do
 		let "COUNT++"
         # FILENAME=`echo $FILE | sed 's/\.\///g'`
