@@ -462,6 +462,12 @@ function gsp {
 	fi
 }
 
+# gitFixRepack
+# Fixes weird repacking issue (https://stackoverflow.com/a/53737530)
+function gitFixRepack {
+	git gc --aggressive --prune=now
+}
+
 # checkAllGitDirectories($dir)
 # Recursively finds all git directories and checks for unstaged changes, staged + uncommitted changes,
 # and untracked files.
