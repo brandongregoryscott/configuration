@@ -412,7 +412,7 @@ function gmp() {
 # pushes commits to remote branch
 function gp() {
 	OUTPUT=$(git push $@ 2>&1)
-	echo -e "$OUTPUT" | sed "s/\&t=1/\&t=1\&dest=development/g"
+	echo -e "$OUTPUT" | sed "s/\&t=1/\&t=1\&dest=development&w=1/g"
 }
 
 function grh() {
