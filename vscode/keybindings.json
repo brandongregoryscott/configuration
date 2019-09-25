@@ -1,0 +1,11 @@
+// Place your key bindings in this file to override the defaults
+[
+    {
+        "key": "alt+1",
+        "command": "extension.runJest"
+    },
+    {
+        "key": "alt+2",
+        "command": "extension.debugJest"
+    },
+]
