@@ -98,22 +98,22 @@ function showdotfiles() {
 }
 
 function shortpwd() {
-  pwd | sed s.$HOME.~.g | awk -F\/ '
-  BEGIN { ORS="/" }
-  END {
-  for (i=1; i<= NF; i++) {
-      if ((i == 1 && $1 != "") || i == 2 || i == NF-1 || i == NF) {
-        print $i
-      }
-      else if (i == 1 && $1 == "") {
-        print "/"$2
-        i++
-      }
-      else {
-        print ".."
-      }
-    }
-  }'
+	pwd | sed s.$HOME.~.g | awk -F\/ '
+	BEGIN { ORS="/" }
+	END {
+	for (i=1; i<= NF; i++) {
+		if ((i == 1 && $1 != "") || i == 2 || i == NF-1 || i == NF) {
+			print $i
+		}
+		else if (i == 1 && $1 == "") {
+			print "/"$2
+			i++
+		}
+		else {
+			print ".."
+		}
+		}
+	}'
 }
 
 function branchName() {
@@ -411,8 +411,11 @@ function gmp() {
 # gp
 # pushes commits to remote branch
 function gp() {
-	OUTPUT=$(git push $@ 2>&1)
-	echo -e "$OUTPUT" | sed "s/\&t=1/\&t=1\&dest=development\&w=1/g"
+	# Commenting this out until needed agin. This redirects stderr to stdout for parsing via sed,
+	# for the purpose of transforming the pull request URL.
+	# OUTPUT=$(git push $@ 2>&1)
+	# echo -e "$OUTPUT" | sed "s/\&t=1/\&t=1\&dest=development\&w=1/g"
+	git push $@
 }
 
 function grh() {
@@ -437,7 +440,7 @@ function gs() {
 # lists commits between branch a and branch b
 # output format is <abbrev commit> <author name> <date> <commit msg>
 function lcb() {
-	 git log --cherry-pick --pretty="%h	%an	%ad	%s" --abbrev-commit $1 --not $2
+	git log --cherry-pick --pretty="%h	%an	%ad	%s" --abbrev-commit $1 --not $2
 }
 
 # gss($stash?)
