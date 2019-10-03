@@ -6,7 +6,6 @@
     "csharp.referencesCodeLens.enabled": false,
     "editor.fontFamily": "Inconsolata, Consolas, 'Courier New', monospace",
     "editor.minimap.enabled": false,
-    "editor.renderWhitespace": "none",
     "editor.rulers": [100],
     "extensions.ignoreRecommendations": true,
     "window.zoomLevel": 0,
@@ -15,7 +14,6 @@
     // TSLint Extension                                         //
     //////////////////////////////////////////////////////////////
     "tslint.autoFixOnSave": true,
-    "typescript.format.insertSpaceAfterOpeningAndBeforeClosingJsxExpressionBraces": false,
     "typescript.format.insertSpaceAfterOpeningAndBeforeClosingTemplateStringBraces": true,
     "typescript.format.insertSpaceAfterTypeAssertion": true,
     "typescript.preferences.importModuleSpecifier": "non-relative",
@@ -130,5 +128,58 @@
             "backgroundColor": "yellow",
             "overviewRulerColor": "grey"
         },
-    ]
+    ],
+
+    //////////////////////////////////////////////////////////////
+    // regreplace                                               //
+    //////////////////////////////////////////////////////////////
+    "regreplace.commands": [
+        {
+            "name": "leading and trailing curly brace spacing",
+            "language": "typescriptreact",
+            "regexp": "({)( *)(([^ {2,}]*\\S)|([\\S, ?]*\\S))( *)(})",
+            "global": true,
+            "replace": "$1 $3 $7"
+        },
+        {
+            "name": "leading and trailing equals spacing",
+            "language": "typescriptreact",
+            "regexp": "(\\w)(={1,3})(\\S)",
+            "global": true,
+            "replace": "$1 $2 $3"
+        },
+        {
+            "name": "multi line object assignment that is setting a single property and encased in parens with trailng comma -> single line",
+            "language": "typescriptreact",
+            "regexp": "(\\({)(\\s*)(\\S*:)(\\s*)(([\\S, ]*),)(\\s*)(}\\);)",
+            "global": true,
+            "replace": "$1 $3 $6 $8"
+        },
+        {
+            "name": "multi line object assignment that is setting a single property and encased in parens without trailing comma -> single line",
+            "language": "typescriptreact",
+            "regexp": "(\\({)(\\s*)(\\S*:)(\\s*)(([\\S, ?]*[^\\s, \\,]))(\\s*)(}\\);)",
+            "global": true,
+            "replace": "$1 $3 $6 $8"
+        },
+        {
+            "name": "space before interface/function/class/conditional opening brace",
+            "language": "typescriptreact",
+            "regexp": "([\\w,)])({)",
+            "global": true,
+            "replace": "$1 $2"
+        },
+        {
+            "name": "trim parens leading and trailing space",
+            "language": "typescriptreact",
+            "regexp": "(\\(|\\S(?= +\\)))(?: +)(\\S|\\))",
+            "global": true,
+            "replace": "$1$2"
+        },
+    ],
+
+    //////////////////////////////////////////////////////////////
+    // etc                                                      //
+    //////////////////////////////////////////////////////////////
+    "terminal.integrated.shell.windows": "C:\\Program Files\\Git\\bin\\bash.exe",
 }
