@@ -58,26 +58,14 @@
 		"body": [
 			"test(\"$1\", (): void => {",
 			"\t// Arrange",
-			"\tconst wrapper   = timePickerWrapper(props);",
-			"\tconst component = wrapper.instance();",
 			"",
 			"\t// Act",
 			"",
 			"\t// Assert",
-			"\texpect($3).toBe($4);",
+			"",
 			"});"
 		],
 		"description": "Stubs out an 'test' call for a Jest test method"
-	},
-	"test jest method - no arrange/act": {
-		"prefix": "jita",
-		"body": [
-			"test(\"$1\", (): void => {",
-			"\t// Assert",
-			"\texpect($2).toBe($3);",
-			"});"
-		],
-		"description": "Stubs out an 'test' call for a Jest test method, without arrange/act section"
 	},
 	"beforeEach(() => {});": {
 		"prefix": "jbe",
