@@ -42,6 +42,36 @@ function cpbashrc() {
 	fi;
 }
 
+function cplmsworkspace() {
+	PWD=`pwd`
+	CURRENT_DIR=`basename $PWD`
+	if [ $CURRENT_DIR = "cca-lms" ];
+	then
+		cp -r ./.vscode/* ./frontend/.vscode/
+		checkReturn "cp -r ./.vscode/* ./frontend/.vscode/"
+	fi
+}
+
+function cpsnippets() {
+	if [[ $# -eq 0 ]] || [[ $1 == "--repo-to-local" ]] || [[ $1 == "-r" ]];
+	then
+		if isWindows;
+		then
+			ok "cp -r ~/configuration/vscode/snippets/* $APPDATA/Code/User/snippets/"
+			cp -r ~/configuration/vscode/snippets/* $APPDATA/Code/User/snippets/
+		fi;
+	fi;
+
+	if [[ $1 == "--local-to-repo" ]] || [[ $1 == "-l" ]];
+	then
+		if isWindows;
+		then
+			ok "cp -r $APPDATA/Code/User/snippets/ ~/configuration/vscode/"
+			cp -r $APPDATA/Code/User/snippets/ ~/configuration/vscode/
+		fi;
+	fi;
+}
+
 function cpvscode() {
 	if [[ $# -eq 0 ]] || [[ $1 == "--repo-to-local" ]] || [[ $1 == "-r" ]];
 	then
@@ -72,25 +102,4 @@ function cpvscode() {
 			cp $APPDATA/Code/User/settings.json ~/configuration/vscode/
 		fi;
 	fi;
-}
-
-function cpsnippets() {
-	if [[ $# -eq 0 ]] || [[ $1 == "--repo-to-local" ]] || [[ $1 == "-r" ]];
-	then
-		if isWindows;
-		then
-			ok "cp -r ~/configuration/vscode/snippets/* $APPDATA/Code/User/snippets/"
-			cp -r ~/configuration/vscode/snippets/* $APPDATA/Code/User/snippets/
-		fi;
-	fi;
-
-	if [[ $1 == "--local-to-repo" ]] || [[ $1 == "-l" ]];
-	then
-		if isWindows;
-		then
-			ok "cp -r $APPDATA/Code/User/snippets/ ~/configuration/vscode/"
-			cp -r $APPDATA/Code/User/snippets/ ~/configuration/vscode/
-		fi;
-	fi;
-
 }
