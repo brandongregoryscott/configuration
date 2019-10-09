@@ -47,8 +47,10 @@ function cplmsworkspace() {
 	CURRENT_DIR=`basename $PWD`
 	if [ $CURRENT_DIR = "cca-lms" ];
 	then
-		cp -r ./.vscode/* ./frontend/.vscode/
-		checkReturn "cp -r ./.vscode/* ./frontend/.vscode/"
+		cat .vscode/settings.json | sed "s|frontend/tslint.json|tslint.json|" > ./frontend/.vscode/settings.json
+		checkReturn ".vscode/settings.json | sed 's|frontend/tslint.json|tslint.json|' > ./frontend/.vscode/settings.json"
+		cp .vscode/launch.json.example ./frontend/.vscode/launch.json
+		checkReturn .vscode/launch.json.example ./frontend/.vscode/launch.json
 	fi
 }
 
