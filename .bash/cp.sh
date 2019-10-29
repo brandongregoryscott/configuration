@@ -49,8 +49,10 @@ function cplmsworkspace() {
 	then
 		cat .vscode/settings.json | sed "s|frontend/tslint.json|tslint.json|" > ./frontend/.vscode/settings.json
 		checkReturn ".vscode/settings.json | sed 's|frontend/tslint.json|tslint.json|' > ./frontend/.vscode/settings.json"
-		cp .vscode/launch.json.example ./frontend/.vscode/launch.json
-		checkReturn .vscode/launch.json.example ./frontend/.vscode/launch.json
+		cat .vscode/launch.json.example | sed "s|/frontend||" > ./frontend/.vscode/launch.json
+		checkReturn ".vscode/launch.json.example | sed 's|/frontend||' > ./frontend/.vscode/launch.json"
+		cp .vscode/launch.json.example ./dotnet/.vscode/launch.json
+		checkReturn ".vscode/launch.json.example ./dotnet/.vscode/launch.json"
 	fi
 }
 
