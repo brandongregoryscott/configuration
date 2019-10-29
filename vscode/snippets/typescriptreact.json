@@ -38,7 +38,7 @@
 		"description": "Stubs out a console log to print the debug tree of current wrapper"
 	},
 	"New React Component": {
-		"prefix": "nc",
+		"prefix": "newComponent",
 		"body": [
 			"import { CoreUtils } from \"@core/utilities/core-utils\";",
 			"import * as React    from \"react\";",
@@ -95,7 +95,11 @@
 			"    // #endregion Event Handlers",
 			"};",
 			"",
-			"export { $1 };",
+			"export {",
+			"\t$1,",
+			"\t$1Props,",
+			"\t$1State,",
+			"};",
 			""
 		],
 		"description": "New React Component"
