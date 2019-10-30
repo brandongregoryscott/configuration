@@ -49,3 +49,6 @@ done;
 # EXPORTS  				  #
 ###########################
 export PATH=$PATH:~/.dotnet/tools/
+
+# Attempt to copy over lms workspace settings
+cplmsworkspace
