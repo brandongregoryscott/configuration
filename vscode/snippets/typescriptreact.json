@@ -108,6 +108,37 @@
 		],
 		"description": "New React Component"
 	},
+	"React Component Test": {
+		"prefix": "newComponentTest",
+		"body": [
+			"import * as React from \"react\";",
+			"",
+			"describe(nameof($1), (): void => {",
+			"    let props:          $1Props;",
+			"",
+			"    const $1Wrapper = (props: $1Props) => shallow<$1, $1Props, $1State>(<$1 {...props} />);",
+			"",
+			"    // -------------------------------------------------------------------------------------------------",
+			"    // #region testMethod()",
+			"    // -------------------------------------------------------------------------------------------------",
+			"",
+			"    describe(\"testMethod()\", (): void => {",
+			"        test(\"\", (): void => {",
+			"            // Arrange",
+			"        ",
+			"            // Act",
+			"        ",
+			"            // Assert",
+			"        ",
+			"        });",
+			"    });",
+			"",
+			"    // #endregion testMethod()",
+			"});",
+			""
+		],
+		"description": "React Component Test"
+	},
 	"react-router history mock": {
 		"prefix": "historymock",
 		"body": [
