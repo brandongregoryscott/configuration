@@ -112,6 +112,7 @@
 		"prefix": "newComponentTest",
 		"body": [
 			"import * as React from \"react\";",
+			"import { shallow } from \"enzyme\";",
 			"",
 			"describe(nameof($1), (): void => {",
 			"    let props:          $1Props;",
