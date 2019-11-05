@@ -115,7 +115,7 @@
 			"import { shallow } from \"enzyme\";",
 			"",
 			"describe(nameof($1), (): void => {",
-			"    let props:          $1Props;",
+			"    let props: $1Props;",
 			"",
 			"    const $1Wrapper = (props: $1Props) => shallow<$1, $1Props, $1State>(<$1 {...props} />);",
 			"",
