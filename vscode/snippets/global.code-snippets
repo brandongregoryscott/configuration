@@ -55,6 +55,7 @@
 	},
 	"test jest method": {
 		"prefix": "jit",
+		"scope": "typescript,typescriptreact",
 		"body": [
 			"test(\"$1\", (): void => {",
 			"\t// Arrange",
@@ -69,6 +70,7 @@
 	},
 	"beforeEach(() => {});": {
 		"prefix": "jbe",
+		"scope": "typescript,typescriptreact",
 		"body": [
 			"beforeEach((): void => {",
 			"\t",
@@ -78,6 +80,7 @@
 	},
 	"describe jest method": {
 		"prefix": "jdsc",
+		"scope": "typescript,typescriptreact",
 		"body": [
 			"// -------------------------------------------------------------------------------------------------",
 			"// #region $1",
