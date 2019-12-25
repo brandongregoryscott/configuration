@@ -45,3 +45,11 @@ for FILE in ${FAILED_IMPORTS[@]};
 do
 	echo -e "\033[1;33mWARN:\033[0m Failed to import $FILE"
 done;
+
+###########################
+# EXPORTS  				  #
+###########################
+export PATH=$PATH:~/.dotnet/tools/
+
+# Attempt to copy over lms workspace settings
+cplmsworkspace

@@ -154,6 +154,12 @@ function gp() {
 	git push $@
 }
 
+# gpum
+# pulls an upstream master branch (from a forked repository) into the local master
+function gpum() {
+	git pull upstream master
+}
+
 function grh() {
 	for file in "$@"
 	do

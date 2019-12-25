@@ -42,6 +42,42 @@ function cpbashrc() {
 	fi;
 }
 
+function cplmsworkspace() {
+	PWD=`pwd`
+	CURRENT_DIR=`basename $PWD`
+	if [ $CURRENT_DIR = "cca-lms" ];
+	then
+		cat .vscode/settings.json | sed "s|frontend/tslint.json|tslint.json|" > ./frontend/.vscode/settings.json
+		checkReturn "cat.vscode/settings.json | sed 's|frontend/tslint.json|tslint.json|' > ./frontend/.vscode/settings.json"
+		cp .vscode/typescript.code-snippets ./frontend/.vscode/typescript.code-snippets
+		checkReturn "cp .vscode/typescript.code-snippets ./frontend/.vscode/typescript.code-snippets"
+		cat .vscode/launch.json.example | sed "s|/frontend||" > ./frontend/.vscode/launch.json
+		checkReturn "cat .vscode/launch.json.example | sed 's|/frontend||' > ./frontend/.vscode/launch.json"
+		cp .vscode/launch.json.example ./dotnet/.vscode/launch.json
+		checkReturn "cp .vscode/launch.json.example ./dotnet/.vscode/launch.json"
+	fi
+}
+
+function cpsnippets() {
+	if [[ $# -eq 0 ]] || [[ $1 == "--repo-to-local" ]] || [[ $1 == "-r" ]];
+	then
+		if isWindows;
+		then
+			ok "cp -r ~/configuration/vscode/snippets/* $APPDATA/Code/User/snippets/"
+			cp -r ~/configuration/vscode/snippets/* $APPDATA/Code/User/snippets/
+		fi;
+	fi;
+
+	if [[ $1 == "--local-to-repo" ]] || [[ $1 == "-l" ]];
+	then
+		if isWindows;
+		then
+			ok "cp -r $APPDATA/Code/User/snippets/ ~/configuration/vscode/"
+			cp -r $APPDATA/Code/User/snippets/ ~/configuration/vscode/
+		fi;
+	fi;
+}
+
 function cpvscode() {
 	if [[ $# -eq 0 ]] || [[ $1 == "--repo-to-local" ]] || [[ $1 == "-r" ]];
 	then
@@ -72,25 +108,4 @@ function cpvscode() {
 			cp $APPDATA/Code/User/settings.json ~/configuration/vscode/
 		fi;
 	fi;
-}
-
-function cpsnippets() {
-	if [[ $# -eq 0 ]] || [[ $1 == "--repo-to-local" ]] || [[ $1 == "-r" ]];
-	then
-		if isWindows;
-		then
-			ok "cp -r ~/configuration/vscode/snippets/* $APPDATA/Code/User/snippets/"
-			cp -r ~/configuration/vscode/snippets/* $APPDATA/Code/User/snippets/
-		fi;
-	fi;
-
-	if [[ $1 == "--local-to-repo" ]] || [[ $1 == "-l" ]];
-	then
-		if isWindows;
-		then
-			ok "cp -r $APPDATA/Code/User/snippets/ ~/configuration/vscode/"
-			cp -r $APPDATA/Code/User/snippets/ ~/configuration/vscode/
-		fi;
-	fi;
-
 }
