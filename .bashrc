@@ -13,6 +13,7 @@ IMPORTS=(
 	$BASH_FOLDER/kill.sh
 	$BASH_FOLDER/mac.sh
 	$BASH_FOLDER/mkdrumkit.sh
+	$BASH_FOLDER/networking.sh
 	$BASH_FOLDER/processing.sh
 	$BASH_FOLDER/util.sh
 )
