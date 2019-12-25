@@ -5,4 +5,6 @@ function ufwblock() {
 	do
 		sudo ufw deny from $ip to any
 	done
+
+    sudo ufw reload
 }
