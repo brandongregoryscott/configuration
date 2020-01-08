@@ -9,6 +9,8 @@
     "editor.rulers": [100],
     "extensions.ignoreRecommendations": true,
     "window.zoomLevel": 0,
+    // Disables folder collapsing when there's no file in between
+    "explorer.compactFolders": false,
 
     //////////////////////////////////////////////////////////////
     // TSLint Extension                                         //
