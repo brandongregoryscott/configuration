@@ -14,6 +14,13 @@ function hidedotfiles() {
 	fi;
 }
 
+function openRunelite() {
+    if isMac;
+    then
+        open -n /Applications/Runelite.app
+    fi;
+}
+
 function showdotfiles() {
 	if isMac;
 	then
