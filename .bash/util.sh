@@ -110,10 +110,10 @@ updateReleaseVersion() {
     echo Updating all assemblies to version $1
 
 	if isMac;
-	then;
+	then
 		# macOS workaround https://stackoverflow.com/a/44864004
-		find dotnet/SpotifySync -type f -name '*.csproj' -exec sed -i.bak -E "s:<(AssemblyFileVersion|AssemblyVersion|PackageVersion|Version)>[0-9]+.[0-9]+.[0-9]+<\/(AssemblyFileVersion|AssemblyVersion|PackageVersion|Version)>:<\1>$version<\/\2>:g" {} \;
+		find . -type f -name '*.csproj' -exec sed -i.bak -E "s:<(AssemblyFileVersion|AssemblyVersion|PackageVersion|Version)>[0-9]+.[0-9]+.[0-9]+<\/(AssemblyFileVersion|AssemblyVersion|PackageVersion|Version)>:<\1>$version<\/\2>:g" {} \;
 		# Cleanup leftover .bak files
-		find dotnet/SpotifySync -type f -name '*.csproj.bak' | xargs rm
+		find . -type f -name '*.csproj.bak' | xargs rm
 	fi;
 }
