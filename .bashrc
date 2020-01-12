@@ -50,6 +50,6 @@ done;
 # EXPORTS  				  #
 ###########################
 export PATH=$PATH:~/.dotnet/tools/
-
+alias and-cli="node ~/AndcultureCode.Cli/cli.js"
 # Attempt to copy over lms workspace settings
 cplmsworkspace
