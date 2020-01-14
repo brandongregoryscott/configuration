@@ -103,3 +103,17 @@ function sourceme() {
         checkReturn "source ~/.bashrc"
 	fi;
 }
+
+updateReleaseVersion() {
+    version=$1
+
+    echo Updating all assemblies to version $1
+
+	if isMac;
+	then
+		# macOS workaround https://stackoverflow.com/a/44864004
+		find . -type f -name '*.csproj' -exec sed -i.bak -E "s:<(AssemblyFileVersion|AssemblyVersion|PackageVersion|Version)>[0-9]+.[0-9]+.[0-9]+<\/(AssemblyFileVersion|AssemblyVersion|PackageVersion|Version)>:<\1>$version<\/\2>:g" {} \;
+		# Cleanup leftover .bak files
+		find . -type f -name '*.csproj.bak' | xargs rm
+	fi;
+}
