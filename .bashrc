@@ -7,6 +7,7 @@ BASH_FOLDER=~/.bash
 CONFIGURATION_BASH_FOLDER=~/configuration/.bash
 VARIBLES_FILE=$BASH_FOLDER/variables.sh
 IMPORTS=(
+	$BASH_FOLDER/alias.sh
 	$BASH_FOLDER/cp.sh
 	$BASH_FOLDER/echo.sh
 	$BASH_FOLDER/git.sh
@@ -45,11 +46,3 @@ for FILE in ${FAILED_IMPORTS[@]};
 do
 	echo -e "\033[1;33mWARN:\033[0m Failed to import $FILE"
 done;
-
-###########################
-# EXPORTS  				  #
-###########################
-export PATH=$PATH:~/.dotnet/tools/
-alias and-cli="node ~/AndcultureCode.Cli/cli.js"
-# Attempt to copy over lms workspace settings
-cplmsworkspace

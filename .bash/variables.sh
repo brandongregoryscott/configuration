@@ -34,4 +34,5 @@ BASENAME=`basename $PWD`
 JAR_NAME=`basename $PWD | cut -d "." -f1`
 # Replace any . with / to make recursive folder structure for java packaging
 LIBRARY_FOLDER_STRUCTURE=`echo $BASENAME | sed "s|\.|/|"`
-export PATH="/apps/:/apps/processing-3.5.3/:$PATH"
+
+export PATH="/usr/local/bin/:/opt/mssql-tools/bin/:~/.dotnet/tools/:/apps/:/apps/processing-3.5.3/:$PATH"
