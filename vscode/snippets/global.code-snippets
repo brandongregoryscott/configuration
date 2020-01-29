@@ -29,7 +29,9 @@
 	"Typescript region": {
 		"prefix": "//#",
 		"body": [
+			"// -------------------------------------------------------------------------------------------------",
 			"// #region $1",
+			"// -------------------------------------------------------------------------------------------------",
 			"",
 			"// #endregion $1",
 		],
@@ -70,7 +72,7 @@
 	},
 	"beforeEach(() => {});": {
 		"prefix": "jbe",
-		"scope": "typescript,typescriptreact",
+		"scope": "typescript,typescriptreact,javascript",
 		"body": [
 			"beforeEach((): void => {",
 			"\t",
@@ -82,15 +84,10 @@
 		"prefix": "jdsc",
 		"scope": "typescript,typescriptreact",
 		"body": [
-			"// -------------------------------------------------------------------------------------------------",
-			"// #region $1",
-			"// -------------------------------------------------------------------------------------------------",
-			"",
 			"describe(\"$1\", (): void => {",
 			"\t$2",
 			"});",
 			"",
-			"// #endregion $1"
 		],
 		"description": "Stubs out a describe call for a Jest test method"
 	},
