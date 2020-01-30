@@ -149,22 +149,40 @@
 	"react-router history mock": {
 		"prefix": "historymock",
 		"body": [
-		  "let context;",
-		  "beforeEach(() => {",
-		  "    // Mocking react-router context to prevent 'history' being null for Link component",
-		  "    // https://stackoverflow.com/a/52533139",
-		  "    context = {",
-		  "        childContextTypes: {",
-		  "            router: () => void 0,",
-		  "        },",
-		  "        context: {",
-		  "            router: {",
-		  "                history: createMemoryHistory(),",
-		  "            },",
-		  "        },",
-		  "    };",
-		  "});"
+			"let context;",
+			"beforeEach(() => {",
+			"    // Mocking react-router context to prevent 'history' being null for Link component",
+			"    // https://stackoverflow.com/a/52533139",
+			"    context = {",
+			"        childContextTypes: {",
+			"            router: () => void 0,",
+			"        },",
+			"        context: {",
+			"            router: {",
+			"                history: createMemoryHistory(),",
+			"            },",
+			"        },",
+			"    };",
+			"});"
 		],
 		"description": "react-router history mock"
-	  }
+	},
+	"New Functional React Component": {
+		"prefix": "nfc",
+		"body": [
+			"import * as React from \"react\";",
+			"",
+			"export interface $1Props {}",
+			"",
+			"const $1: React.FunctionComponent<$1Props> = (",
+			"    props: $1Props",
+			") => {",
+			"    return <div></div>;",
+			"};",
+			"",
+			"export default $1;",
+			""
+		],
+		"description": "New Functional React Component"
+	}
 }
