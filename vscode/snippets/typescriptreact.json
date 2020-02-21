@@ -38,7 +38,7 @@
 		"description": "Stubs out a console log to print the debug tree of current wrapper"
 	},
 	"New React Component": {
-		"prefix": "ncomponent",
+		"prefix": "ncc",
 		"body": [
 			"import { CoreUtils } from \"@core/utilities/core-utils\";",
 			"import * as React    from \"react\";",
@@ -109,7 +109,7 @@
 		"description": "New React Component"
 	},
 	"React Component Test": {
-		"prefix": "newComponentTest",
+		"prefix": "nct",
 		"body": [
 			"import * as React from \"react\";",
 			"import { shallow } from \"enzyme\";",
