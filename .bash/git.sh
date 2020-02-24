@@ -10,10 +10,13 @@ function gca() {
 	git commit --amend
 }
 
-# gcm($@)
-# commits staged files with a message
-function gcm() {
-	git commit -m "$@"
+# gcf($branch, $paths)
+# Checks out one or more paths from another branch
+function gcf() {
+	git fetch
+	BRANCH=$1
+	shift
+	git checkout $BRANCH -- $@
 }
 
 # gcj($@)
@@ -32,6 +35,12 @@ function gcj() {
 	else
 		warn "No git repository found."
 	fi
+}
+
+# gcm($@)
+# commits staged files with a message
+function gcm() {
+	git commit -m "$@"
 }
 
 function gd() {
