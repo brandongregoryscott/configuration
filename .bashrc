@@ -7,6 +7,8 @@ BASH_FOLDER=~/.bash
 CONFIGURATION_BASH_FOLDER=~/configuration/.bash
 VARIBLES_FILE=$BASH_FOLDER/variables.sh
 IMPORTS=(
+	$BASH_FOLDER/util.sh # Loading utils first as it contains methods like isMac, isWindows, etc.
+
 	$BASH_FOLDER/alias.sh
 	$BASH_FOLDER/cp.sh
 	$BASH_FOLDER/echo.sh
@@ -16,7 +18,6 @@ IMPORTS=(
 	$BASH_FOLDER/mkdrumkit.sh
 	$BASH_FOLDER/networking.sh
 	$BASH_FOLDER/processing.sh
-	$BASH_FOLDER/util.sh
 )
 
 # Variable to hold imports that failed
