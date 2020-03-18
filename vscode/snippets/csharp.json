@@ -8,5 +8,17 @@
 			"",
 			"_$2$3Conductor = $2$3Conductor;",
 		]
+	},
+	"IRepositoryReadConductor<T>.FindAll": {
+		"prefix": "rrcF",
+		"body": [
+			"It.IsAny<Expression<Func<$1, bool>>>(),",
+			"It.IsAny<Func<IQueryable<$1>, IOrderedQueryable<$1>>>(),",
+			"It.IsAny<string>(),",
+			"It.IsAny<int?>(),",
+			"It.IsAny<int?>(),",
+			"It.IsAny<bool?>(),",
+			"It.IsAny<bool>()"
+		]
 	}
 }
