@@ -42,22 +42,6 @@ function cpbashrc() {
 	fi;
 }
 
-function cplmsworkspace() {
-	PWD=`pwd`
-	CURRENT_DIR=`basename $PWD`
-	if [ $CURRENT_DIR = "cca-lms" ];
-	then
-		cat .vscode/settings.json | sed "s|frontend/tslint.json|tslint.json|" > ./frontend/.vscode/settings.json
-		checkReturn "cat.vscode/settings.json | sed 's|frontend/tslint.json|tslint.json|' > ./frontend/.vscode/settings.json"
-		cp .vscode/typescript.code-snippets ./frontend/.vscode/typescript.code-snippets
-		checkReturn "cp .vscode/typescript.code-snippets ./frontend/.vscode/typescript.code-snippets"
-		cat .vscode/launch.json.example | sed "s|/frontend||" > ./frontend/.vscode/launch.json
-		checkReturn "cat .vscode/launch.json.example | sed 's|/frontend||' > ./frontend/.vscode/launch.json"
-		cp .vscode/launch.json.example ./dotnet/.vscode/launch.json
-		checkReturn "cp .vscode/launch.json.example ./dotnet/.vscode/launch.json"
-	fi
-}
-
 function cpsnippets() {
 	if [[ $# -eq 0 ]] || [[ $1 == "--repo-to-local" ]] || [[ $1 == "-r" ]];
 	then
