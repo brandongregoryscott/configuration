@@ -59,7 +59,7 @@
 		"prefix": "jit",
 		"scope": "typescript,typescriptreact",
 		"body": [
-			"test(\"$1\", (): void => {",
+			"test(\"$1\", () => {",
 			"\t// Arrange",
 			"",
 			"\t// Act",
@@ -74,7 +74,7 @@
 		"prefix": "jbe",
 		"scope": "typescript,typescriptreact,javascript",
 		"body": [
-			"beforeEach((): void => {",
+			"beforeEach(() => {",
 			"\t",
 			"});",
 		],
@@ -84,7 +84,7 @@
 		"prefix": "jdsc",
 		"scope": "typescript,typescriptreact",
 		"body": [
-			"describe(\"$1\", (): void => {",
+			"describe(\"$1\", () => {",
 			"\t$2",
 			"});",
 			"",
