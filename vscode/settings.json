@@ -1,189 +1,188 @@
 {
-    //////////////////////////////////////////////////////////////
-    // Editor/Misc Configuration                                //
-    //////////////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////////////
+  // Editor/Misc Configuration                                //
+  //////////////////////////////////////////////////////////////
 
-    "csharp.referencesCodeLens.enabled": false,
-    "editor.fontFamily": "Inconsolata, Consolas, 'Courier New', monospace",
-    "editor.minimap.enabled": false,
-    "editor.rulers": [100],
-    "extensions.ignoreRecommendations": true,
-    "window.zoomLevel": 0,
-    // Disables folder collapsing when there's no file in between
-    "explorer.compactFolders": false,
+  "csharp.referencesCodeLens.enabled": false,
+  "editor.fontFamily": "Inconsolata, Consolas, 'Courier New', monospace",
+  "editor.minimap.enabled": false,
+  "editor.rulers": [100],
+  "extensions.ignoreRecommendations": true,
+  "window.zoomLevel": 0,
+  // Disables folder collapsing when there's no file in between
+  "explorer.compactFolders": false,
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "editor.formatOnSave": true,
 
-    //////////////////////////////////////////////////////////////
-    // TSLint Extension                                         //
-    //////////////////////////////////////////////////////////////
-    "tslint.autoFixOnSave": true,
-    "typescript.format.insertSpaceAfterOpeningAndBeforeClosingTemplateStringBraces": true,
-    "typescript.format.insertSpaceAfterTypeAssertion": true,
-    "typescript.preferences.importModuleSpecifier": "non-relative",
-    "typescript.updateImportsOnFileMove.enabled": "always",
+  //////////////////////////////////////////////////////////////
+  // TSLint Extension                                         //
+  //////////////////////////////////////////////////////////////
+  "tslint.autoFixOnSave": true,
+  "typescript.format.insertSpaceAfterOpeningAndBeforeClosingTemplateStringBraces": true,
+  "typescript.format.insertSpaceAfterTypeAssertion": true,
+  "typescript.preferences.importModuleSpecifier": "non-relative",
+  "typescript.updateImportsOnFileMove.enabled": "always",
 
-    //////////////////////////////////////////////////////////////
-    // GitLens Extension                                        //
-    //////////////////////////////////////////////////////////////
-    "gitlens.advanced.messages": {
-        "suppressShowKeyBindingsNotice": true
-    },
-    "gitlens.views.fileHistory.enabled": true,
-    "gitlens.views.lineHistory.enabled": true,
+  //////////////////////////////////////////////////////////////
+  // GitLens Extension                                        //
+  //////////////////////////////////////////////////////////////
+  "gitlens.advanced.messages": {
+    "suppressShowKeyBindingsNotice": true
+  },
+  "gitlens.views.fileHistory.enabled": true,
+  "gitlens.views.lineHistory.enabled": true,
 
-    //////////////////////////////////////////////////////////////
-    // PostCSS Sorting Extension                                //
-    //////////////////////////////////////////////////////////////
-    "postcssSorting.config": {
-        "order": [
-            "at-rules",
-            "declarations",
-            "rules",
-            "custom-properties",
-        ],
-        "properties-order": [
-            "border",
-            "display",
-            "margin",
-            "padding-top",
-            "padding-right",
-            "padding-bottom",
-            "padding-left",
-            "left",
-            "position",
-            "right",
-            "top",
-            "z-index",
-            "bottom",
-            "background-color",
-            "color",
-            "border-color",
-            "font-family",
-            "font-style",
-            "font-weight",
-            "font-size",
-            "text-transform",
-            "box-shadow",
-            "content",
-            "transform",
-            "transition",
-        ],
-        "unspecified-properties-position": "bottom",
-    },
-    "postcssSorting.showErrorMessages": true,
-
-    //////////////////////////////////////////////////////////////
-    // CSSComb Extension                                        //
-    //////////////////////////////////////////////////////////////
-    "csscomb.formatOnSave": false,
-    "csscomb.ignoreFilesOnSave": [],
-    "csscomb.preset": {
-        "remove-empty-rulesets": true,
-        "always-semicolon": true,
-        "color-case": "lower",
-        "quotes": "double",
-        "block-indent": "    ",
-        "tab-size": true,
-        "space-before-colon": "",
-        "space-after-colon": " ",
-        "space-before-combinator": " ",
-        "space-after-combinator": " ",
-        "space-between-declarations": "\n",
-        "space-before-opening-brace": " ",
-        "space-after-opening-brace": "\n",
-        "space-before-selector-delimiter": "",
-        "space-before-closing-brace": "\n",
-        "strip-spaces": true,
-        "vendor-prefix-align": true
-    },
-    "csscomb.supportEmbeddedStyles": true,
-    "csscomb.syntaxAssociations": {},
-
-    //////////////////////////////////////////////////////////////
-    // JavaScript (ES6) code snippets Extension                 //
-    //////////////////////////////////////////////////////////////
-    "emmet.includeLanguages": {
-        "javascript": "javascriptreact",
-        "typescript": "typescript",
-        "typescriptreact": "typescriptreact",
-        "jsx-sublime-babel-tags": "javascriptreact"
-    },
-    "emmet.triggerExpansionOnTab": true,
-
-    //////////////////////////////////////////////////////////////
-    // Trailing-Spaces Extension                                //
-    //////////////////////////////////////////////////////////////
-    "trailing-spaces.trimOnSave": true,
-
-    //////////////////////////////////////////////////////////////
-    // TODO Highlight                                           //
-    //////////////////////////////////////////////////////////////
-    "todohighlight.keywords": [
-        {
-            "text": "NOTE",
-            "color": "#000000",
-            "backgroundColor": "yellow",
-            "overviewRulerColor": "grey"
-        },
-        {
-            "text": "BSCOTT",
-            "color": "#000000",
-            "backgroundColor": "yellow",
-            "overviewRulerColor": "grey"
-        },
+  //////////////////////////////////////////////////////////////
+  // PostCSS Sorting Extension                                //
+  //////////////////////////////////////////////////////////////
+  "postcssSorting.config": {
+    "order": ["at-rules", "declarations", "rules", "custom-properties"],
+    "properties-order": [
+      "border",
+      "display",
+      "margin",
+      "padding-top",
+      "padding-right",
+      "padding-bottom",
+      "padding-left",
+      "left",
+      "position",
+      "right",
+      "top",
+      "z-index",
+      "bottom",
+      "background-color",
+      "color",
+      "border-color",
+      "font-family",
+      "font-style",
+      "font-weight",
+      "font-size",
+      "text-transform",
+      "box-shadow",
+      "content",
+      "transform",
+      "transition"
     ],
+    "unspecified-properties-position": "bottom"
+  },
+  "postcssSorting.showErrorMessages": true,
 
-    //////////////////////////////////////////////////////////////
-    // regreplace                                               //
-    //////////////////////////////////////////////////////////////
-    "regreplace.commands": [
-        {
-            "name": "leading and trailing curly brace spacing",
-            "language": "typescriptreact",
-            "regexp": "({)( *)(([^ {2,}]*\\S)|([\\S, ?]*\\S))( *)(})",
-            "global": true,
-            "replace": "$1 $3 $7"
-        },
-        {
-            "name": "leading and trailing equals spacing",
-            "language": "typescriptreact",
-            "regexp": "(\\w)(={1,3})(\\S)",
-            "global": true,
-            "replace": "$1 $2 $3"
-        },
-        {
-            "name": "multi line object assignment that is setting a single property and encased in parens with trailng comma -> single line",
-            "language": "typescriptreact",
-            "regexp": "(\\({)(\\s*)(\\S*:)(\\s*)(([\\S, ]*),)(\\s*)(}\\);)",
-            "global": true,
-            "replace": "$1 $3 $6 $8"
-        },
-        {
-            "name": "multi line object assignment that is setting a single property and encased in parens without trailing comma -> single line",
-            "language": "typescriptreact",
-            "regexp": "(\\({)(\\s*)(\\S*:)(\\s*)(([\\S, ?]*[^\\s, \\,]))(\\s*)(}\\);)",
-            "global": true,
-            "replace": "$1 $3 $6 $8"
-        },
-        {
-            "name": "space before interface/function/class/conditional opening brace",
-            "language": "typescriptreact",
-            "regexp": "([\\w,)])({)",
-            "global": true,
-            "replace": "$1 $2"
-        },
-        {
-            "name": "trim parens leading and trailing space",
-            "language": "typescriptreact",
-            "regexp": "(\\(|\\S(?= +\\)))(?: +)(\\S|\\))",
-            "global": true,
-            "replace": "$1$2"
-        },
-    ],
+  //////////////////////////////////////////////////////////////
+  // CSSComb Extension                                        //
+  //////////////////////////////////////////////////////////////
+  "csscomb.formatOnSave": false,
+  "csscomb.ignoreFilesOnSave": [],
+  "csscomb.preset": {
+    "remove-empty-rulesets": true,
+    "always-semicolon": true,
+    "color-case": "lower",
+    "quotes": "double",
+    "block-indent": "    ",
+    "tab-size": true,
+    "space-before-colon": "",
+    "space-after-colon": " ",
+    "space-before-combinator": " ",
+    "space-after-combinator": " ",
+    "space-between-declarations": "\n",
+    "space-before-opening-brace": " ",
+    "space-after-opening-brace": "\n",
+    "space-before-selector-delimiter": "",
+    "space-before-closing-brace": "\n",
+    "strip-spaces": true,
+    "vendor-prefix-align": true
+  },
+  "csscomb.supportEmbeddedStyles": true,
+  "csscomb.syntaxAssociations": {},
 
-    //////////////////////////////////////////////////////////////
-    // Terminal                                                 //
-    //////////////////////////////////////////////////////////////
-    "terminal.integrated.shell.windows": "C:\\Program Files\\Git\\bin\\bash.exe",
-    "terminal.integrated.cursorStyle": "line",
-    "terminal.integrated.allowChords": false
+  //////////////////////////////////////////////////////////////
+  // JavaScript (ES6) code snippets Extension                 //
+  //////////////////////////////////////////////////////////////
+  "emmet.includeLanguages": {
+    "javascript": "javascriptreact",
+    "typescript": "typescript",
+    "typescriptreact": "typescriptreact",
+    "jsx-sublime-babel-tags": "javascriptreact"
+  },
+  "emmet.triggerExpansionOnTab": true,
+
+  //////////////////////////////////////////////////////////////
+  // Trailing-Spaces Extension                                //
+  //////////////////////////////////////////////////////////////
+  "trailing-spaces.trimOnSave": true,
+
+  //////////////////////////////////////////////////////////////
+  // TODO Highlight                                           //
+  //////////////////////////////////////////////////////////////
+  "todohighlight.keywords": [
+    {
+      "text": "NOTE",
+      "color": "#000000",
+      "backgroundColor": "yellow",
+      "overviewRulerColor": "grey"
+    },
+    {
+      "text": "BSCOTT",
+      "color": "#000000",
+      "backgroundColor": "yellow",
+      "overviewRulerColor": "grey"
+    }
+  ],
+
+  //////////////////////////////////////////////////////////////
+  // regreplace                                               //
+  //////////////////////////////////////////////////////////////
+  "regreplace.commands": [
+    {
+      "name": "leading and trailing curly brace spacing",
+      "language": "typescriptreact",
+      "regexp": "({)( *)(([^ {2,}]*\\S)|([\\S, ?]*\\S))( *)(})",
+      "global": true,
+      "replace": "$1 $3 $7"
+    },
+    {
+      "name": "leading and trailing equals spacing",
+      "language": "typescriptreact",
+      "regexp": "(\\w)(={1,3})(\\S)",
+      "global": true,
+      "replace": "$1 $2 $3"
+    },
+    {
+      "name": "multi line object assignment that is setting a single property and encased in parens with trailng comma -> single line",
+      "language": "typescriptreact",
+      "regexp": "(\\({)(\\s*)(\\S*:)(\\s*)(([\\S, ]*),)(\\s*)(}\\);)",
+      "global": true,
+      "replace": "$1 $3 $6 $8"
+    },
+    {
+      "name": "multi line object assignment that is setting a single property and encased in parens without trailing comma -> single line",
+      "language": "typescriptreact",
+      "regexp": "(\\({)(\\s*)(\\S*:)(\\s*)(([\\S, ?]*[^\\s, \\,]))(\\s*)(}\\);)",
+      "global": true,
+      "replace": "$1 $3 $6 $8"
+    },
+    {
+      "name": "space before interface/function/class/conditional opening brace",
+      "language": "typescriptreact",
+      "regexp": "([\\w,)])({)",
+      "global": true,
+      "replace": "$1 $2"
+    },
+    {
+      "name": "trim parens leading and trailing space",
+      "language": "typescriptreact",
+      "regexp": "(\\(|\\S(?= +\\)))(?: +)(\\S|\\))",
+      "global": true,
+      "replace": "$1$2"
+    }
+  ],
+
+  //////////////////////////////////////////////////////////////
+  // Terminal                                                 //
+  //////////////////////////////////////////////////////////////
+  "terminal.integrated.shell.windows": "C:\\Program Files\\Git\\bin\\bash.exe",
+  "terminal.integrated.cursorStyle": "line",
+  "terminal.integrated.allowChords": false
 }
