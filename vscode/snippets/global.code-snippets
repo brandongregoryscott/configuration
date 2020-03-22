@@ -15,39 +15,23 @@
 	// 	],
 	// 	"description": "Log output to console"
 	// }
-	"Layout state get/set": {
-		"prefix": "lsg",
-		"body": [
-			"$1,",
-			"$3: \"$3\",",
-			"const _get$1 = (): $2 => _getState(_keys.$3);",
-			"const _set$1 = (value: $2) => _setState(_keys.$3, value);",
-			"get$1: _get$1,",
-			"set$1: _set$1,",
-		],
-	},
-	"Typescript region": {
-		"prefix": "//#",
-		"body": [
-			"// -------------------------------------------------------------------------------------------------",
-			"// #region $1",
-			"// -------------------------------------------------------------------------------------------------",
-			"",
-			"// #endregion $1",
-		],
-	},
+	"Typescript Region": {
+        "prefix": "ts-region",
+        "body": [
+            "// -----------------------------------------------------------------------------------------",
+            "// #region $1",
+            "// -----------------------------------------------------------------------------------------",
+            "",
+            "// #endregion $1"
+        ],
+        "description": "Typescript region"
+    },
 	"console log object": {
 		"prefix": "clo",
 		"body": [
 			"console.log(\"$1:\", $1);"
 		],
 		"description": "console log object"
-	},
-	"NOTE: THIS is the important setup for this test": {
-		"prefix": "NOTE",
-		"body": [
-			"// NOTE: THIS is the important setup for this test",
-		],
 	},
 	"BSCOTT TODO": {
 		"prefix": "BSCOTT",
@@ -57,7 +41,7 @@
 	},
 	"test jest method": {
 		"prefix": "jit",
-		"scope": "typescript,typescriptreact",
+		"scope": "typescript,typescriptreact,javascript",
 		"body": [
 			"test(\"$1\", () => {",
 			"\t// Arrange",
@@ -82,7 +66,7 @@
 	},
 	"describe jest method": {
 		"prefix": "jdsc",
-		"scope": "typescript,typescriptreact",
+		"scope": "typescript,typescriptreact,javascript",
 		"body": [
 			"describe(\"$1\", () => {",
 			"\t$2",
