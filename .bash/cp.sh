@@ -47,8 +47,14 @@ function cpsnippets() {
 	then
 		if isWindows;
 		then
-			ok "cp -r ~/configuration/vscode/snippets/* $APPDATA/Code/User/snippets/"
 			cp -r ~/configuration/vscode/snippets/* $APPDATA/Code/User/snippets/
+			checkReturn "cp -r ~/configuration/vscode/snippets/* $APPDATA/Code/User/snippets/"
+		fi;
+
+		if isMac;
+		then
+			cp -a ~/configuration/vscode/snippets/* ~/Library/"Application Support"/Code/User/snippets/
+			checkReturn "cp -a ~/configuration/vscode/snippets/* ~/Library/Application Support/Code/User/snippets/"
 		fi;
 	fi;
 
@@ -56,8 +62,14 @@ function cpsnippets() {
 	then
 		if isWindows;
 		then
-			ok "cp -r $APPDATA/Code/User/snippets/ ~/configuration/vscode/"
 			cp -r $APPDATA/Code/User/snippets/ ~/configuration/vscode/
+			checkReturn "cp -r $APPDATA/Code/User/snippets/ ~/configuration/vscode/"
+		fi;
+
+		if isMac;
+		then
+			cp -a ~/Library/"Application Support"/Code/User/snippets/. ~/configuration/vscode/
+			checkReturn "cp -a ~/Library/Application Support/Code/User/snippets/. ~/configuration/vscode/"
 		fi;
 	fi;
 }
@@ -67,14 +79,14 @@ function cpvscode() {
 	then
 		if isMac;
 		then
-			ok "cp ~/configuration/vscode/settings.json ~/Library/Application Support/Code/User/"
 			cp ~/configuration/vscode/settings.json ~/Library/"Application Support"/Code/User/
+			checkReturn "cp ~/configuration/vscode/settings.json ~/Library/Application Support/Code/User/"
 		fi;
 
 		if isWindows;
 		then
-			ok "cp ~/configuration/vscode/settings.json $APPDATA/Code/User/"
 			cp ~/configuration/vscode/settings.json $APPDATA/Code/User/
+			checkReturn "cp ~/configuration/vscode/settings.json $APPDATA/Code/User/"
 		fi;
 	fi;
 
@@ -82,14 +94,14 @@ function cpvscode() {
 	then
 		if isMac;
 		then
-			ok "cp ~/Library/Application Support/Code/User/settings.json ~/configuration/vscode/"
 			cp ~/Library/"Application Support"/Code/User/settings.json ~/configuration/vscode/
+			checkReturn "cp ~/Library/Application Support/Code/User/settings.json ~/configuration/vscode/"
 		fi;
 
 		if isWindows;
 		then
-			ok "cp $APPDATA/Code/User/settings.json ~/configuration/vscode/"
 			cp $APPDATA/Code/User/settings.json ~/configuration/vscode/
+			checkReturn "cp $APPDATA/Code/User/settings.json ~/configuration/vscode/"
 		fi;
 	fi;
 }
