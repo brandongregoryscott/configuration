@@ -22,18 +22,27 @@ function gcf() {
 # gcj($@)
 # commits staged files with a message prefixed by a Jira PBI
 function gcj() {
-	if [[ -d .git ]];
+	if ! [[ -d .git ]];
 	then
-		JIRA_TASK=`git branch | grep "* " | sed "s/* //g" | cut -d "/" -f2 | cut -d "-" -f1-2`
-		if [[ $1 == "--soft" ]] || [[ $1 == "-s" ]];
-		then
-			shift
-			ok "git commit -m \"$JIRA_TASK $@\""
-		else
-			git commit -m "$JIRA_TASK $@"
-		fi
-	else
 		warn "No git repository found."
+		return
+	fi;
+
+	BRANCH=$(git branch | grep "* " | sed "s/* //g")
+	PBI=`echo $BRANCH | cut -d "/" -f2 | cut -d "-" -f1-2`
+	if ! [[ $BRANCH =~ [a-zA-Z]+-[0-9]+ ]];
+	then
+		warn "No PBI found in current branch name $BRANCH, not appending anything."
+		git commit -m "$@"
+		return
+	fi
+
+	if [[ $1 == "--soft" ]] || [[ $1 == "-s" ]];
+	then
+		shift
+		ok "git commit -m \"$PBI $@\""
+	else
+		git commit -m "$PBI $@"
 	fi
 }
 
