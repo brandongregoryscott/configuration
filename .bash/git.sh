@@ -32,7 +32,7 @@ function gcj() {
 	PBI=`echo $BRANCH | cut -d "/" -f2 | cut -d "-" -f1-2`
 	if ! [[ $BRANCH =~ [a-zA-Z]+-[0-9]+ ]];
 	then
-		warn "No PBI found in current branch name $BRANCH, not appending anything."
+		warn "No PBI found in current branch name '$BRANCH', not appending anything."
 		git commit -m "$@"
 		return
 	fi
