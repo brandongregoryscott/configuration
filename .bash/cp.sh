@@ -51,6 +51,12 @@ function cpsnippets() {
 			checkReturn "cp -r ~/configuration/vscode/snippets/* $APPDATA/Code/User/snippets/"
 		fi;
 
+		if isLinux;
+		then
+			cp -r ~/configuration/vscode/snippets/ ~/.config/Code/User/snippets/
+			checkReturn "cp -r ~/configuration/vscode/snippets/ ~/.config/Code/User/snippets/"
+		fi;
+
 		if isMac;
 		then
 			cp -a ~/configuration/vscode/snippets/* ~/Library/"Application Support"/Code/User/snippets/
@@ -64,6 +70,12 @@ function cpsnippets() {
 		then
 			cp -r $APPDATA/Code/User/snippets/ ~/configuration/vscode/
 			checkReturn "cp -r $APPDATA/Code/User/snippets/ ~/configuration/vscode/"
+		fi;
+
+		if isLinux;
+		then
+			cp -r ~/.config/Code/User/snippets/* ~/configuration/vscode/
+			checkReturn "cp -r ~/.config/Code/User/snippets/* ~/configuration/vscode/"
 		fi;
 
 		if isMac;
@@ -83,6 +95,12 @@ function cpvscode() {
 			checkReturn "cp ~/configuration/vscode/settings.json ~/Library/Application Support/Code/User/"
 		fi;
 
+		if isLinux;
+		then
+			cp ~/configuration/vscode/settings.json ~/.config/Code/User
+			checkReturn "cp ~/configuration/vscode/settings.json ~/.config/Code/User"
+		fi;
+
 		if isWindows;
 		then
 			cp ~/configuration/vscode/settings.json $APPDATA/Code/User/
@@ -96,6 +114,12 @@ function cpvscode() {
 		then
 			cp ~/Library/"Application Support"/Code/User/settings.json ~/configuration/vscode/
 			checkReturn "cp ~/Library/Application Support/Code/User/settings.json ~/configuration/vscode/"
+		fi;
+
+		if isLinux;
+		then
+			cp ~/.config/Code/User/settings.json ~/configuration/vscode/
+			checkReturn "cp ~/.config/Code/User/settings.json ~/configuration/vscode/"
 		fi;
 
 		if isWindows;
