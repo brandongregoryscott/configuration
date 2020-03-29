@@ -117,3 +117,8 @@ updateReleaseVersion() {
 		find . -type f -name '*.csproj.bak' | xargs rm
 	fi;
 }
+
+# Unzips a tar.gz file
+untar() {
+	tar -xzvf $@
+}
