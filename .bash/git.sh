@@ -181,7 +181,7 @@ function gpum() {
 function grh() {
 	for file in "$@"
 	do
-		git reset head $file
+		git reset HEAD $file
 	done
 }
 
