@@ -15,6 +15,7 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "editor.formatOnSave": true,
+  "remove-empty-lines.allowedNumberOfEmptyLines": 1,
 
   //////////////////////////////////////////////////////////////
   // TSLint Extension                                         //
