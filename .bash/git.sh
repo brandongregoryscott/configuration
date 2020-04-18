@@ -52,6 +52,25 @@ function gcm() {
 	git commit -m "$@"
 }
 
+# gcsquash(["--from <branch>"] <commit message>)
+# Soft resets the current branch from the origin branch, stages the changes, and then commits
+# with the given message. Defaults to development branch.
+# https://stackoverflow.com/a/50880042
+function gcsquash() {
+	# Set the default origin branch to development
+	ORIGIN_BRANCH="development"
+	if [[ $1 == "--from" ]] || [[ $1 == "-f" ]];
+	then
+		ORIGIN_BRANCH=$2
+		shift
+		shift
+	fi
+
+	git reset --soft $ORIGIN_BRANCH
+	git add -A
+	git commit -m "$@"
+}
+
 function gd() {
 	git diff $1
 }
