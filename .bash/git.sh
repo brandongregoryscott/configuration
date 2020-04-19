@@ -191,6 +191,18 @@ function gp() {
 	git push $@
 }
 
+# gsu($remoteRepository)
+# Sets the upstream remote repository
+function gsu() {
+	if [[ $# -ne 1 ]];
+	then
+		error "Syntax is 'gsu <original owner>/<repository>'"
+		return
+	fi
+
+	git remote add upstream https://github.com/$1.git
+}
+
 # gpum
 # pulls an upstream master branch (from a forked repository) into the local master
 function gpum() {
