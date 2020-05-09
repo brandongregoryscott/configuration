@@ -59,8 +59,11 @@ function cpsnippets() {
 
 		if isMac;
 		then
-			cp -a ~/configuration/vscode/snippets/* ~/Library/"Application Support"/Code/User/snippets/
-			checkReturn "cp -a ~/configuration/vscode/snippets/* ~/Library/Application Support/Code/User/snippets/"
+			cp -a ~/configuration/vscode/snippets/* "$APPLICATION_SUPPORT"/Code/User/snippets/
+			checkReturn "cp -a ~/configuration/vscode/snippets/* $APPLICATION_SUPPORT/Code/User/snippets/"
+
+			cp -a ~/configuration/azuredatastudio/snippets/* "$APPLICATION_SUPPORT"/azuredatastudio/User/snippets/
+			checkReturn "cp -a ~/configuration/azuredatastudio/snippets/* $APPLICATION_SUPPORT/azuredatastudio/User/snippets/"
 		fi;
 	fi;
 
@@ -80,8 +83,8 @@ function cpsnippets() {
 
 		if isMac;
 		then
-			cp -a ~/Library/"Application Support"/Code/User/snippets/. ~/configuration/vscode/
-			checkReturn "cp -a ~/Library/Application Support/Code/User/snippets/. ~/configuration/vscode/"
+			cp -a "$APPLICATION_SUPPORT"/Code/User/snippets/. ~/configuration/vscode/
+			checkReturn "cp -a $APPLICATION_SUPPORT/Code/User/snippets/. ~/configuration/vscode/"
 		fi;
 	fi;
 }
@@ -91,8 +94,8 @@ function cpvscode() {
 	then
 		if isMac;
 		then
-			cp ~/configuration/vscode/settings.json ~/Library/"Application Support"/Code/User/
-			checkReturn "cp ~/configuration/vscode/settings.json ~/Library/Application Support/Code/User/"
+			cp ~/configuration/vscode/settings.json "$APPLICATION_SUPPORT"/Code/User/
+			checkReturn "cp ~/configuration/vscode/settings.json $APPLICATION_SUPPORT/Code/User/"
 		fi;
 
 		if isLinux;
@@ -112,8 +115,8 @@ function cpvscode() {
 	then
 		if isMac;
 		then
-			cp ~/Library/"Application Support"/Code/User/settings.json ~/configuration/vscode/
-			checkReturn "cp ~/Library/Application Support/Code/User/settings.json ~/configuration/vscode/"
+			cp "$APPLICATION_SUPPORT"/Code/User/settings.json ~/configuration/vscode/
+			checkReturn "cp $APPLICATION_SUPPORT/Code/User/settings.json ~/configuration/vscode/"
 		fi;
 
 		if isLinux;

@@ -36,4 +36,5 @@ JAR_NAME=`basename $PWD | cut -d "." -f1`
 LIBRARY_FOLDER_STRUCTURE=`echo $BASENAME | sed "s|\.|/|"`
 
 export PATH="/usr/local/bin/:/opt/mssql-tools/bin/:~/.dotnet/tools/:/apps/:/apps/processing-3.5.3/:$PATH"
+export APPLICATION_SUPPORT=~/Library/Application\ Support
 export ASPNETCORE_ENVIRONMENT=Development
