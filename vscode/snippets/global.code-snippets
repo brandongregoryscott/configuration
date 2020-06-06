@@ -59,7 +59,7 @@
     "describe jest method": {
         "prefix": "jdsc",
         "scope": "typescript,typescriptreact,javascript",
-        "body": ["describe(\"$1\", () => {", "\t$0", "}); // end $1", ""],
+        "body": ["describe(\"$1\", () => {", "\t$0", "});", ""],
         "description": "Stubs out a describe call for a Jest test method"
     }
 }
