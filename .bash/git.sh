@@ -4,6 +4,13 @@
 # git wrapper functions #
 #########################
 
+# getCurrentBranch
+# Returns the current branch. Example usage:
+# git push --set-upstream origin `getCurrentBranch`
+function getCurrentBranch() {
+	echo "$(git symbolic-ref --short HEAD)"
+}
+
 # gca()
 # amends a commit
 function gca() {
