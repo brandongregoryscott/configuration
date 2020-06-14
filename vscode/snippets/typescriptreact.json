@@ -97,7 +97,7 @@
             "// #region Exports",
             "// -----------------------------------------------------------------------------------------",
             "",
-            "export { ${1:ComponentName}, ${1:ComponentName}Props };",
+            "export { ${1:ComponentName} };",
             "",
             "// #endregion Exports",
             ""
