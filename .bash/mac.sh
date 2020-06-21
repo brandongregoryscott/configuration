@@ -4,6 +4,14 @@
 # macOS functions       #
 #########################
 
+function hideCrashReports() {
+	if isMac;
+	then
+		defaults write com.apple.CrashReporter DialogType none
+		checkReturn "defaults write com.apple.CrashReporter DialogType none"
+	fi;
+}
+
 function hidedotfiles() {
 	if isMac;
 	then
@@ -19,6 +27,14 @@ function openRunelite() {
     then
         open -n /Applications/Runelite.app
     fi;
+}
+
+function showCrashReports() {
+	if isMac;
+	then
+		defaults write com.apple.CrashReporter DialogType crashreport
+		checkReturn "defaults write com.apple.CrashReporter DialogType crashreport"
+	fi;
 }
 
 function showdotfiles() {
