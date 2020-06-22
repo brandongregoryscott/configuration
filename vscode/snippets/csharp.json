@@ -6,7 +6,7 @@
 			"",
 			"IRepository$3Conductor<$1> $2$3Conductor,",
 			"",
-			"_$2$3Conductor = $2$3Conductor;",
+			"_$2$3Conductor = $2$3Conductor;"
 		]
 	},
 	"IRepositoryReadConductor<T>.FindAll": {
@@ -19,6 +19,14 @@
 			"It.IsAny<int?>(),",
 			"It.IsAny<bool?>(),",
 			"It.IsAny<bool>()"
+		]
+	},
+	"#region/#endregion": {
+		"prefix": "#re",
+		"body": [
+			"#region $1",
+			"",
+			"#endregion $1"
 		]
 	}
 }
