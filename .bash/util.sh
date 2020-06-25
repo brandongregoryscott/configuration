@@ -104,7 +104,19 @@ function sourceme() {
 	fi;
 }
 
-updateReleaseVersion() {
+# Wrapper function for clearing out node modules, package-lock and clearing npm cache.
+# This "super clear" seems to be the only way to get a local reference to a repository for a package
+# to sync back up...
+function ssnpmi() {
+	pushd frontend
+	rm package-lock.json
+	npm cache clear -f
+	rm -rf node_modules
+	npm i
+	popd
+}
+
+function updateReleaseVersion() {
     version=$1
 
     echo Updating all assemblies to version $1
@@ -119,6 +131,6 @@ updateReleaseVersion() {
 }
 
 # Unzips a tar.gz file
-untar() {
+function untar() {
 	tar -xzvf $@
 }
