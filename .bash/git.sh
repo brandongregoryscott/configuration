@@ -93,10 +93,12 @@ function gdt() {
 	CONFIRM=$(confirm "$(warn Are you sure you want to delete tag $1 on origin?)")
 	if [[ CONFIRM -eq $false ]];
 	then
+		ok "Not deleting tag.";
 		return;
 	fi;
 
 	git push --delete origin $1
+	checkReturn "git push --delete origin $1"
 }
 
 function gf() {
