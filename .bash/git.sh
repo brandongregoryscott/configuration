@@ -82,6 +82,17 @@ function gd() {
 	git diff $1
 }
 
+# gdt
+function gdt() {
+	CONFIRM=$(confirm "$(warn Are you sure you want to delete tag $1 on origin?)")
+	if [[ CONFIRM -eq $false ]];
+	then
+		return;
+	fi;
+
+	git push --delete origin $1
+}
+
 function gf() {
 	if [[ $1 == "--remote-to-local" ]] || [[ $1 == "-r" ]];
 	then
