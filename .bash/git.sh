@@ -59,6 +59,12 @@ function gcm() {
 	git commit -m "$@"
 }
 
+# gcr($version)
+# commits staged files with a version revision message
+function gcr() {
+	git commit -m "Rev'd to version $1"
+}
+
 # gcsquash(["--from <branch>"] <commit message>)
 # Soft resets the current branch from the origin branch, stages the changes, and then commits
 # with the given message. Defaults to development branch.
