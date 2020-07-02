@@ -97,6 +97,8 @@ function gdt() {
 		return;
 	fi;
 
+	git tag -d $1
+	checkReturn "git tag -d $1"
 	git push --delete origin $1
 	checkReturn "git push --delete origin $1"
 }
