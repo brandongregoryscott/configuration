@@ -18,6 +18,7 @@
     "editor.wordBasedSuggestions": false,
     "editor.suggest.showWords": false,
     "remove-empty-lines.allowedNumberOfEmptyLines": 1,
+    "prettier.configPath": "~/configuration/.prettierrc",
 
     //////////////////////////////////////////////////////////////
     // TSLint Extension                                         //
