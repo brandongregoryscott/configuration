@@ -19,6 +19,7 @@
     "editor.suggest.showWords": false,
     "remove-empty-lines.allowedNumberOfEmptyLines": 1,
     "prettier.configPath": "~/configuration/.prettierrc",
+    "output.smartScroll.enabled": false,
 
     //////////////////////////////////////////////////////////////
     // TSLint Extension                                         //
