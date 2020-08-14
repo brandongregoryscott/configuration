@@ -20,7 +20,17 @@
     "remove-empty-lines.allowedNumberOfEmptyLines": 1,
     "prettier.configPath": "~/configuration/.prettierrc",
     "output.smartScroll.enabled": false,
-    "cSpell.userWords": ["andculture", "andculturecode", "endregion"],
+    "cSpell.userWords": [
+        "Andculture",
+        "NFPA",
+        "andculture",
+        "andculturecode",
+        "andculturecode",
+        "endregion",
+        "endregion",
+        "nameof",
+        "pojo"
+    ],
 
     //////////////////////////////////////////////////////////////
     // TSLint Extension                                         //
