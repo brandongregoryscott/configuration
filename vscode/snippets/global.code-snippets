@@ -26,8 +26,15 @@
         ],
         "description": "Typescript region"
     },
+    "console log": {
+        "prefix": "cl",
+        "scope": "typescript,typescriptreact,javascript",
+        "body": ["console.log(`$1`);"],
+        "description": "console log"
+    },
     "console log object": {
         "prefix": "clo",
+        "scope": "typescript,typescriptreact,javascript",
         "body": ["console.log(\"$1:\", $1);"],
         "description": "console log object"
     },
@@ -49,6 +56,24 @@
             "});"
         ],
         "description": "Stubs out an 'test' call for a Jest test method"
+    },
+    "test jest method 'each'": {
+        "prefix": "jitea",
+        "scope": "typescript,typescriptreact,javascript",
+        "body": [
+            "test.each([undefined, null, \"\", \" \"])(",
+            "    \"when called with %p,\",",
+            "    (value) => {",
+            "        // Arrange",
+            "",
+            "        // Act",
+            "        const result = sut.method(value);",
+            "",
+            "        // Assert",
+            "    }",
+            ");"
+        ],
+        "description": "Stubs out a 'test.each(array)' call for a Jest test method"
     },
     "beforeEach(() => {});": {
         "prefix": "jbe",
