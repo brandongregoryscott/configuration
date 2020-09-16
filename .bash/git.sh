@@ -11,6 +11,19 @@ function getCurrentBranch() {
 	echo "$(git symbolic-ref --short HEAD)"
 }
 
+function ga() {
+	for file in "$@"
+	do
+		git add $file
+	done
+}
+
+# gat()
+# Adds a tag at the current commit
+function gat() {
+	git tag -a $1 -m "$1"
+}
+
 # gca()
 # amends a commit
 function gca() {
@@ -219,6 +232,18 @@ function gp() {
 	git push $@
 }
 
+# gpt($tag)
+# pushes tag to the origin repository
+function gpt() {
+	if [[ $# -ne 1 ]];
+	then
+		error "Syntax is 'gpt <tag name>'"
+		return
+	fi
+
+	git push origin $1
+}
+
 # gsu($remoteRepository)
 # Sets the upstream remote repository
 function gsu() {
@@ -244,12 +269,6 @@ function grh() {
 	done
 }
 
-function ga() {
-	for file in "$@"
-	do
-		git add $file
-	done
-}
 
 function gs() {
 	git status
