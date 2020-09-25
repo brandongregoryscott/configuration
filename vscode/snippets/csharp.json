@@ -1,32 +1,35 @@
 {
-	"DI CRUD Conductor": {
-		"prefix": "di",
-		"body": [
-			"private readonly IRepository$3Conductor<$1> _$2$3Conductor;",
-			"",
-			"IRepository$3Conductor<$1> $2$3Conductor,",
-			"",
-			"_$2$3Conductor = $2$3Conductor;"
-		]
-	},
-	"IRepositoryReadConductor<T>.FindAll": {
-		"prefix": "rrcF",
-		"body": [
-			"It.IsAny<Expression<Func<$1, bool>>>(),",
-			"It.IsAny<Func<IQueryable<$1>, IOrderedQueryable<$1>>>(),",
-			"It.IsAny<string>(),",
-			"It.IsAny<int?>(),",
-			"It.IsAny<int?>(),",
-			"It.IsAny<bool?>(),",
-			"It.IsAny<bool>()"
-		]
-	},
-	"#region/#endregion": {
-		"prefix": "#re",
-		"body": [
-			"#region $1",
-			"",
-			"#endregion $1"
-		]
-	}
+    "DI CRUD Conductor": {
+        "prefix": "di",
+        "body": [
+            "private readonly IRepository$3Conductor<$1> _$2$3Conductor;",
+            "",
+            "IRepository$3Conductor<$1> $2$3Conductor,",
+            "",
+            "_$2$3Conductor = $2$3Conductor;"
+        ]
+    },
+    "IRepositoryReadConductor<T>.FindAll": {
+        "prefix": "rrcF",
+        "body": [
+            "It.IsAny<Expression<Func<$1, bool>>>(),",
+            "It.IsAny<Func<IQueryable<$1>, IOrderedQueryable<$1>>>(),",
+            "It.IsAny<string>(),",
+            "It.IsAny<int?>(),",
+            "It.IsAny<int?>(),",
+            "It.IsAny<bool?>(),",
+            "It.IsAny<bool>()"
+        ]
+    },
+    "Arrange user with role": {
+        "prefix": "var user",
+        "body": [
+            "var ${1:user} = Create<User>();",
+            "var ${2:role} = Create<Role>();",
+            "var ${3:userRole} = Create<UserRole>(",
+            "\t(e) => e.RoleId = ${2:role}.Id,",
+            "\t(e) => e.UserId = ${1:user}.Id",
+            ");"
+        ]
+    }
 }
