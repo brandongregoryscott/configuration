@@ -4,13 +4,6 @@
 # git wrapper functions #
 #########################
 
-# getCurrentBranch
-# Returns the current branch. Example usage:
-# git push --set-upstream origin `getCurrentBranch`
-function getCurrentBranch() {
-	echo "$(git symbolic-ref --short HEAD)"
-}
-
 function ga() {
 	for file in "$@"
 	do
@@ -18,25 +11,85 @@ function ga() {
 	done
 }
 
+function gd() {
+	git diff $1
+}
+
+function gf() {
+	if [[ $1 == "--remote-to-local" ]] || [[ $1 == "-r" ]];
+	then
+		for remote in `git branch -r | grep -v '\->'`;
+		do
+			git branch --track ${remote#origin/} $remote
+		done
+		return
+	fi
+	git fetch
+}
+
+# gpum
+# pulls an upstream master branch (from a forked repository) into the local master
+function gpum() {
+	git pull upstream master
+}
+
+function grh() {
+	for file in "$@"
+	do
+		git reset HEAD $file
+	done
+}
+
+function gs() {
+	git status
+}
+
+# gsu($remoteRepository)
+# Sets the upstream remote repository
+function gsu() {
+	if [[ $# -ne 1 ]];
+	then
+		error "Syntax is 'gsu <original owner>/<repository>'"
+		return
+	fi
+
+	git remote add upstream https://github.com/$1.git
+}
+
+# -----------------------------------------------------------------------------------------
+# region git tag
+# -----------------------------------------------------------------------------------------
+
 # gat()
 # Adds a tag at the current commit
 function gat() {
 	git tag -a $1 -m "$1"
 }
 
+# gdt
+function gdt() {
+	CONFIRM=$(confirm "$(warn Are you sure you want to delete tag $1 on origin?)")
+	if [[ CONFIRM -eq $false ]];
+	then
+		ok "Not deleting tag.";
+		return;
+	fi;
+
+	git tag -d $1
+	checkReturn "git tag -d $1"
+	git push --delete origin $1
+	checkReturn "git push --delete origin $1"
+}
+# endregion git tag
+
+# -----------------------------------------------------------------------------------------
+# region git commit
+# -----------------------------------------------------------------------------------------
+
 # gca()
 # amends a commit
 function gca() {
 	git commit --amend
-}
-
-# gcf($branch, $paths)
-# Checks out one or more paths from another branch
-function gcf() {
-	git fetch
-	BRANCH=$1
-	shift
-	git checkout $BRANCH -- $@
 }
 
 # gcj($@)
@@ -97,41 +150,20 @@ function gcsquash() {
 	git commit -m "$@"
 }
 
-function gd() {
-	git diff $1
-}
+# endregion git commit
 
-# gdt
-function gdt() {
-	CONFIRM=$(confirm "$(warn Are you sure you want to delete tag $1 on origin?)")
-	if [[ CONFIRM -eq $false ]];
-	then
-		ok "Not deleting tag.";
-		return;
-	fi;
-
-	git tag -d $1
-	checkReturn "git tag -d $1"
-	git push --delete origin $1
-	checkReturn "git push --delete origin $1"
-}
-
-function gf() {
-	if [[ $1 == "--remote-to-local" ]] || [[ $1 == "-r" ]];
-	then
-		for remote in `git branch -r | grep -v '\->'`;
-		do
-			git branch --track ${remote#origin/} $remote
-		done
-		return
-	fi
-	git fetch
-}
+# -----------------------------------------------------------------------------------------
+# region git checkout
+# -----------------------------------------------------------------------------------------
 
 # gc($@)
 # checks out a file/branch/commit
 function gc() {
 	git checkout "$@"
+}
+
+function gcb() {
+	git checkout -b "$1"
 }
 
 # gcd()
@@ -140,16 +172,13 @@ function gcd() {
 	git checkout development
 }
 
-# gcw()
-# checks out working branch
-function gcw() {
-	git checkout working
-}
-
-# gcs()
-# checks out staging branch
-function gcs() {
-	git checkout staging
+# gcf($branch, $paths)
+# Checks out one or more paths from another branch
+function gcf() {
+	git fetch
+	BRANCH=$1
+	shift
+	git checkout $BRANCH -- $@
 }
 
 # gcp()
@@ -158,9 +187,23 @@ function gcp() {
 	git checkout master
 }
 
-function gcb() {
-	git checkout -b "$1"
+# gcs()
+# checks out staging branch
+function gcs() {
+	git checkout staging
 }
+
+# gcw()
+# checks out working branch
+function gcw() {
+	git checkout working
+}
+
+# endregion git checkout
+
+# -----------------------------------------------------------------------------------------
+# region git branch
+# -----------------------------------------------------------------------------------------
 
 # gbd($@)
 # deletes a branch (or list of branches separated by spaces)
@@ -192,6 +235,12 @@ function gb() {
 	git branch $@
 }
 
+# endregion git branch
+
+# -----------------------------------------------------------------------------------------
+# region git merge
+# -----------------------------------------------------------------------------------------
+
 # gm($1)
 # merges specified branch into the current one
 function gm() {
@@ -222,6 +271,12 @@ function gmp() {
 	git merge --no-edit master
 }
 
+# endregion git merge
+
+# -----------------------------------------------------------------------------------------
+# region git push
+# -----------------------------------------------------------------------------------------
+
 # gp
 # pushes commits to remote branch
 function gp() {
@@ -244,42 +299,11 @@ function gpt() {
 	git push origin $1
 }
 
-# gsu($remoteRepository)
-# Sets the upstream remote repository
-function gsu() {
-	if [[ $# -ne 1 ]];
-	then
-		error "Syntax is 'gsu <original owner>/<repository>'"
-		return
-	fi
+# endregion git push
 
-	git remote add upstream https://github.com/$1.git
-}
-
-# gpum
-# pulls an upstream master branch (from a forked repository) into the local master
-function gpum() {
-	git pull upstream master
-}
-
-function grh() {
-	for file in "$@"
-	do
-		git reset HEAD $file
-	done
-}
-
-
-function gs() {
-	git status
-}
-
-# lcb($a, $b)
-# lists commits between branch a and branch b
-# output format is <abbrev commit> <author name> <date> <commit msg>
-function lcb() {
-	git log --cherry-pick --pretty="%h	%an	%ad	%s" --abbrev-commit $1 --not $2
-}
+# -----------------------------------------------------------------------------------------
+# region git stash
+# -----------------------------------------------------------------------------------------
 
 # gss($stash?)
 # git stash show (optionally, number of stashes behind to show)
@@ -303,11 +327,11 @@ function gsp {
 	fi
 }
 
-# gitFixRepack
-# Fixes weird repacking issue (https://stackoverflow.com/a/53737530)
-function gitFixRepack {
-	git gc --aggressive --prune=now
-}
+# endregion git stash
+
+# -----------------------------------------------------------------------------------------
+# region misc git functions
+# -----------------------------------------------------------------------------------------
 
 # checkAllGitDirectories($dir)
 # Recursively finds all git directories and checks for unstaged changes, staged + uncommitted changes,
@@ -377,3 +401,32 @@ function checkForUntrackedFiles() {
 		warn "There are untracked files in $@"
 	fi
 }
+
+# getCurrentBranch
+# Returns the current branch. Example usage:
+# git push --set-upstream origin `getCurrentBranch`
+function getCurrentBranch() {
+	echo "$(git symbolic-ref --short HEAD)"
+}
+
+# gitFixRepack
+# Fixes weird repacking issue (https://stackoverflow.com/a/53737530)
+function gitFixRepack {
+	git gc --aggressive --prune=now
+}
+
+# lcb($a, $b)
+# lists commits between branch a and branch b
+# output format is <abbrev commit> <author name> <date> <commit msg>
+function lcb() {
+	git log --cherry-pick --pretty="%h	%an	%ad	%s" --abbrev-commit $1 --not $2
+}
+
+# pointHeadToMain
+# Wrapper function to point the remote origin HEAD to main
+# Mostly so I don't have to keep looking up the 'Rename default branch from "master" to "main"' issues on GH
+function pointHeadToMain() {
+	git symbolic-ref refs/remotes/origin/HEAD refs/remotes/origin/main
+}
+
+# endregion misc git functions
