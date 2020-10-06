@@ -135,17 +135,8 @@ function shortpwd() {
 }
 
 function sourceme() {
-	if isMac;
-	then
-		source ~/.bash_profile
-		checkReturn "source ~/.bash_profile"
-	fi;
-
-	if isWindows || isLinux;
-	then
-		source ~/.bashrc
-        checkReturn "source ~/.bashrc"
-	fi;
+	source ~/.bashrc
+	checkReturn "source ~/.bashrc"
 }
 
 # Wrapper function for clearing out node modules, package-lock and clearing npm cache.

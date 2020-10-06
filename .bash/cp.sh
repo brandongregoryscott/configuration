@@ -7,20 +7,10 @@
 function cpbashrc() {
 	if [[ $# -eq 0 ]] || [[ $1 == "--repo-to-local" ]] || [[ $1 == "-r" ]];
 	then
-		if isMac;
-		then
-			cp ~/configuration/.bashrc ~/.bash_profile
-			checkReturn "cp ~/configuration/.bashrc ~/.bash_profile"
-            cp -r ~/configuration/.bash/* ~/.bash/
-			checkReturn "cp -r ~/configuration/.bash/* ~/.bash/"
-		fi;
-		if [[ isWindows || isLinux ]];
-		then
-			cp ~/configuration/.bashrc ~/.bashrc
-			checkReturn "cp ~/configuration/.bashrc ~/.bashrc"
-            cp -r ~/configuration/.bash/* ~/.bash/
-			checkReturn "cp -r ~/configuration/.bash/* ~/.bash/"
-		fi;
+		cp ~/configuration/.bashrc ~/.bashrc
+		checkReturn "cp ~/configuration/.bashrc ~/.bashrc"
+		cp -r ~/configuration/.bash/* ~/.bash/
+		checkReturn "cp -r ~/configuration/.bash/* ~/.bash/"
 	fi;
 
 	if [[ $1 == "--local-to-repo" ]] || [[ $1 == "-l" ]];
@@ -32,7 +22,8 @@ function cpbashrc() {
             cp -r ~/.bash ~/configuration/.bash
 			checkReturn "cp -r ~/.bash ~/configuration/.bash"
 		fi;
-		if [[ isWindows || isLinux ]];
+
+		if isWindows || isLinux;
 		then
 			cp ~/.bashrc ~/configuration/.bashrc
 			checkReturn "cp ~/.bashrc ~/configuration/.bashrc"
