@@ -7,29 +7,26 @@
 function cpbashrc() {
 	if [[ $# -eq 0 ]] || [[ $1 == "--repo-to-local" ]] || [[ $1 == "-r" ]];
 	then
+		cp ~/configuration/.bash_profile ~/.bash_profile
+		checkReturn "cp ~/configuration/.bash_profile ~/.bash_profile"
+
 		cp ~/configuration/.bashrc ~/.bashrc
 		checkReturn "cp ~/configuration/.bashrc ~/.bashrc"
+
 		cp -r ~/configuration/.bash/* ~/.bash/
 		checkReturn "cp -r ~/configuration/.bash/* ~/.bash/"
 	fi;
 
 	if [[ $1 == "--local-to-repo" ]] || [[ $1 == "-l" ]];
 	then
-		if isMac;
-		then
-			cp ~/.bash_profile ~/configuration/.bashrc
-			checkReturn "cp ~/.bash_profile ~/configuration/.bashrc"
-            cp -r ~/.bash ~/configuration/.bash
-			checkReturn "cp -r ~/.bash ~/configuration/.bash"
-		fi;
+		cp ~/.bash_profile ~/configuration/.bash_profile
+		checkReturn "cp ~/.bash_profile ~/configuration/.bash_profile"
 
-		if isWindows || isLinux;
-		then
-			cp ~/.bashrc ~/configuration/.bashrc
-			checkReturn "cp ~/.bashrc ~/configuration/.bashrc"
-			cp -r ~/.bash ~/configuration/.bash
-			checkReturn "cp -r ~/.bash ~/configuration/.bash"
-		fi;
+		cp ~/.bashrc ~/configuration/.bashrc
+		checkReturn "cp ~/.bashrc ~/configuration/.bashrc"
+
+		cp -r ~/.bash ~/configuration/.bash
+		checkReturn "cp -r ~/.bash ~/configuration/.bash"
 	fi;
 }
 
