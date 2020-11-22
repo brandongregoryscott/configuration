@@ -4,14 +4,29 @@
 # Processing helpers    #
 #########################
 
+function getBasename() {
+	echo `basename $(pwd)`
+}
+
+function getJarname() {
+	echo `getBasename | cut -d "." -f1`
+}
+
+# Replace any . with / to make recursive folder structure for java packaging
+function getLibraryFolderStructure() {
+	echo `getBasename | sed "s|\.|/|g"`
+}
+
 function libraryClean() {
 	rm -rf bin/
 	checkReturn "rm -rf bin/"
 	rm -rf dist/
-	checkReturn "rm -rf dust/"
+	checkReturn "rm -rf dist/"
 }
 
 function setupLibrary() {
+	LIBRARY_FOLDER_STRUCTURE=`getLibraryFolderStructure`
+	JAR_NAME=`getJarname`
 	mkdirIfNotExists bin/$LIBRARY_FOLDER_STRUCTURE
 	mkdirIfNotExists dist/$JAR_NAME/library
 	mkdirIfNotExists lib
@@ -26,6 +41,9 @@ function setupLibrary() {
 }
 
 function libraryMake() {
+	LIBRARY_FOLDER_STRUCTURE=`getLibraryFolderStructure`
+	JAR_NAME=`getJarname`
+
 	# Attempt to setup library again to make sure rt.jar & core.jar files are present for compilation.
 	setupLibrary
 

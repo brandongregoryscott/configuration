@@ -29,11 +29,6 @@ YELLOW="\033[1;33m"
 true=0
 false=1
 PS1='\[\e[0;32m\]\u@\h\[\033[00m\] \[\033[01;33m\]`shortpwd`\[\033[00m\]\[\033[01;35m\]`branchName`\[\033[00m\]-> '
-PWD=`pwd`
-BASENAME=`basename $PWD`
-JAR_NAME=`basename $PWD | cut -d "." -f1`
-# Replace any . with / to make recursive folder structure for java packaging
-LIBRARY_FOLDER_STRUCTURE=`echo $BASENAME | sed "s|\.|/|"`
 
 export PATH="/usr/local/bin/:/opt/mssql-tools/bin/:~/.dotnet/tools/:/apps/:/apps/processing-3.5.3/:$PATH"
 export APPLICATION_SUPPORT=~/Library/Application\ Support
