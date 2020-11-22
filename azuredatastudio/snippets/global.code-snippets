@@ -1,0 +1,83 @@
+{
+    // Place your global snippets here. Each snippet is defined under a snippet name and has a scope, prefix, body and
+    // description. Add comma separated ids of the languages where the snippet is applicable in the scope field. If scope
+    // is left empty or omitted, the snippet gets applied to all languages. The prefix is what is
+    // used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
+    // $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders.
+    // Placeholders with the same ids are connected.
+    // Example:
+    // "Print to console": {
+    // 	"scope": "javascript,typescript",
+    // 	"prefix": "log",
+    // 	"body": [
+    // 		"console.log('$1');",
+    // 		"$2"
+    // 	],
+    // 	"description": "Log output to console"
+    // }
+    "Clear Hangfire": {
+        "prefix": "sqlClearHangfire",
+        "body": [
+            "-- Drop the table if it already exists",
+            "IF OBJECT_ID('[Hangfire].[AggregatedCounter]', 'U') IS NOT NULL",
+            "DROP TABLE [Hangfire].[AggregatedCounter]",
+            "GO",
+            "",
+            "IF OBJECT_ID('[Hangfire].[Counter]', 'U') IS NOT NULL",
+            "DROP TABLE [Hangfire].[Counter]",
+            "GO",
+            "",
+            "IF OBJECT_ID('[Hangfire].[Hash]', 'U') IS NOT NULL",
+            "DROP TABLE [Hangfire].[Hash]",
+            "GO",
+            "",
+            "IF OBJECT_ID('[Hangfire].[JobParameter]', 'U') IS NOT NULL",
+            "DROP TABLE [Hangfire].[JobParameter]",
+            "GO",
+            "",
+            "IF OBJECT_ID('[Hangfire].[JobQueue]', 'U') IS NOT NULL",
+            "DROP TABLE [Hangfire].[JobQueue]",
+            "GO",
+            "",
+            "IF OBJECT_ID('[Hangfire].[List]', 'U') IS NOT NULL",
+            "DROP TABLE [Hangfire].[List]",
+            "GO",
+            "",
+            "IF OBJECT_ID('[Hangfire].[Schema]', 'U') IS NOT NULL",
+            "DROP TABLE [Hangfire].[Schema]",
+            "GO",
+            "",
+            "IF OBJECT_ID('[Hangfire].[Server]', 'U') IS NOT NULL",
+            "DROP TABLE [Hangfire].[Server]",
+            "GO",
+            "",
+            "IF OBJECT_ID('[Hangfire].[Set]', 'U') IS NOT NULL",
+            "DROP TABLE [Hangfire].[Set]",
+            "GO",
+            "",
+            "IF OBJECT_ID('[Hangfire].[State]', 'U') IS NOT NULL",
+            "DROP TABLE [Hangfire].[State]",
+            "GO",
+            "",
+            "-- Needs to be last",
+            "IF OBJECT_ID('[Hangfire].[Job]', 'U') IS NOT NULL",
+            "DROP TABLE [Hangfire].[Job]",
+            "GO",
+            ""
+        ],
+        "description": "Clear Hangfire"
+    },
+    "Select Duplicates": {
+        "prefix": "sqlSelectDuplicates",
+        "body": [
+            "SELECT $UniqueColumn1, $UniqueColumn2, COUNT(*) FROM $Table GROUP BY $UniqueColumn1, $UniqueColumn2 HAVING COUNT(*) > 1",
+        ]
+    },
+    "Get UserId": {
+        "prefix": "sqlSelectMe",
+        "body": [
+            "(SELECT TOP 1 Id FROM Users WHERE Email = 'bscott@andculture.com')"
+        ],
+        "description": "Get UserId"
+    },
+}
