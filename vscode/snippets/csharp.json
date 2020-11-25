@@ -21,6 +21,18 @@
             "It.IsAny<bool>()"
         ]
     },
+    "Filter": {
+        "prefix": "Expr",
+        "body": [
+            "Expression<Func<${1:Type}, bool>> filter = (e) => true;"
+        ]
+    },
+    "OrderBy": {
+        "prefix": "Func",
+        "body": [
+            "Func<IQueryable<${1:Type}>, IOrderedQueryable<${1:Type}>> orderBy = (o) => o.OrderByDescending((e) => e.Id);"
+        ]
+    },
     "Arrange user with role": {
         "prefix": "var user",
         "body": [
