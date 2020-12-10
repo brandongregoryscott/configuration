@@ -80,4 +80,13 @@
         ],
         "description": "Get UserId"
     },
+    "Random Int": {
+        "prefix": "randInt",
+        "body": [
+          "DECLARE @MAX bigint = 100",
+          "DECLARE @MIN bigint = 0",
+          "SELECT FLOOR(RAND() * (@MAX - @MIN + 1) + @MIN)"
+        ],
+        "description": "Random Int"
+      }
 }
