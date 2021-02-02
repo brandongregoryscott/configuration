@@ -70,7 +70,7 @@
     "Select Duplicates": {
         "prefix": "sqlSelectDuplicates",
         "body": [
-            "SELECT $UniqueColumn1, $UniqueColumn2, COUNT(*) FROM $Table GROUP BY $UniqueColumn1, $UniqueColumn2 HAVING COUNT(*) > 1",
+            "SELECT $UniqueColumn1, $UniqueColumn2, COUNT(*) FROM $Table GROUP BY $UniqueColumn1, $UniqueColumn2 HAVING COUNT(*) > 1"
         ]
     },
     "Get UserId": {
@@ -83,10 +83,41 @@
     "Random Int": {
         "prefix": "randInt",
         "body": [
-          "DECLARE @MAX bigint = 100",
-          "DECLARE @MIN bigint = 0",
-          "SELECT FLOOR(RAND() * (@MAX - @MIN + 1) + @MIN)"
+            "DECLARE @MAX bigint = 100",
+            "DECLARE @MIN bigint = 0",
+            "SELECT FLOOR(RAND() * (@MAX - @MIN + 1) + @MIN)"
         ],
         "description": "Random Int"
-      }
+    },
+    "Create SQL Server Login & DB User": {
+        "prefix": "sqlCreateUserLogin",
+        "body": [
+            "-- Creates the server login $1 with password",
+            "CREATE LOGIN $1 WITH PASSWORD = 'passw0rd!';",
+            "-- Creates a database user for the login created above.",
+            "CREATE USER $1 FOR LOGIN $1;",
+            "",
+            "-- Add all server roles to new database user",
+            "ALTER SERVER ROLE bulkadmin ADD MEMBER $1",
+            "ALTER SERVER ROLE dbcreator ADD MEMBER $1",
+            "ALTER SERVER ROLE diskadmin ADD MEMBER $1",
+            "ALTER SERVER ROLE processadmin ADD MEMBER $1",
+            "ALTER SERVER ROLE securityadmin ADD MEMBER $1",
+            "ALTER SERVER ROLE serveradmin ADD MEMBER $1",
+            "ALTER SERVER ROLE setupadmin ADD MEMBER $1",
+            "ALTER SERVER ROLE sysadmin ADD MEMBER $1",
+            "",
+            "-- Add all database roles to new database user",
+            "ALTER ROLE db_accessadmin ADD MEMBER $1",
+            "ALTER ROLE db_backupoperator ADD MEMBER $1",
+            "ALTER ROLE db_datareader ADD MEMBER $1",
+            "ALTER ROLE db_datawriter ADD MEMBER $1",
+            "ALTER ROLE db_ddladmin ADD MEMBER $1",
+            "ALTER ROLE db_denydatareader ADD MEMBER $1",
+            "ALTER ROLE db_denydatawriter ADD MEMBER $1",
+            "ALTER ROLE db_owner ADD MEMBER $1",
+            "ALTER ROLE db_securityadmin ADD MEMBER $1"
+        ],
+        "description": "Create SQL Server Login & DB User"
+    }
 }
