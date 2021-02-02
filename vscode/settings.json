@@ -99,5 +99,12 @@
     //////////////////////////////////////////////////////////////
     "terminal.integrated.shell.windows": "C:\\Program Files\\Git\\bin\\bash.exe",
     "terminal.integrated.cursorStyle": "line",
-    "terminal.integrated.allowChords": false
+    "terminal.integrated.allowChords": false,
+
+    //////////////////////////////////////////////////////////////
+    // Document This                                            //
+    //////////////////////////////////////////////////////////////
+    "docthis.includeMemberOfOnClassMembers": false,
+    "docthis.includeMemberOfOnInterfaceMembers": false,
+    "docthis.includeTypes": false
 }
