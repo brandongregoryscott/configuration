@@ -1,22 +1,28 @@
 {
     //////////////////////////////////////////////////////////////
-    // Editor/Misc Configuration                                //
+    // Editor Configuration                                     //
     //////////////////////////////////////////////////////////////
 
-    "csharp.referencesCodeLens.enabled": false,
     "editor.fontFamily": "Inconsolata, Consolas, 'Courier New', monospace",
     "editor.minimap.enabled": false,
     "editor.rulers": [100],
+    "editor.formatOnSave": true,
+    "editor.wordBasedSuggestions": false,
+    "editor.suggest.showWords": false,
+    "editor.suggestSelection": "first",
+    "[typescriptreact]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+
+    //////////////////////////////////////////////////////////////
+    // Misc Configuration                                       //
+    //////////////////////////////////////////////////////////////
+
+    "csharp.referencesCodeLens.enabled": false,
     "extensions.ignoreRecommendations": true,
     "window.zoomLevel": 0,
     // Disables folder collapsing when there's no file in between
     "explorer.compactFolders": false,
-    "[typescriptreact]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
-    },
-    "editor.formatOnSave": true,
-    "editor.wordBasedSuggestions": false,
-    "editor.suggest.showWords": false,
     "remove-empty-lines.allowedNumberOfEmptyLines": 1,
     "output.smartScroll.enabled": false,
     "cSpell.userWords": [
@@ -33,6 +39,19 @@
         "popd",
         "pushd"
     ],
+    "cSpell.ignorePaths": [
+        "**/package-lock.json",
+        "**/node_modules/**",
+        "**/vscode-extension/**",
+        "**/.git/objects/**",
+        ".vscode",
+        ".vscode-insiders",
+        "**/cultures/*.ts"
+    ],
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "codesnap.realLineNumbers": true,
+    "vsicons.dontShowNewVersionMessage": true,
+    "google-translate.firstLanguage": "es-es",
 
     //////////////////////////////////////////////////////////////
     // TSLint Extension                                         //
@@ -80,6 +99,5 @@
     //////////////////////////////////////////////////////////////
     "terminal.integrated.shell.windows": "C:\\Program Files\\Git\\bin\\bash.exe",
     "terminal.integrated.cursorStyle": "line",
-    "terminal.integrated.allowChords": false,
-    "terminal.integrated.rendererType": "dom"
+    "terminal.integrated.allowChords": false
 }
