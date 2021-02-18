@@ -13,6 +13,8 @@
     "[typescriptreact]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
+    "workbench.editor.wrapTabs": true,
+    "workbench.editor.tabSizing": "shrink",
 
     //////////////////////////////////////////////////////////////
     // Misc Configuration                                       //
@@ -106,5 +108,6 @@
     //////////////////////////////////////////////////////////////
     "docthis.includeMemberOfOnClassMembers": false,
     "docthis.includeMemberOfOnInterfaceMembers": false,
-    "docthis.includeTypes": false
+    "docthis.includeTypes": false,
+
 }
