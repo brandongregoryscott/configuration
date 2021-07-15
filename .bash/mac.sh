@@ -49,7 +49,7 @@ function showdotfiles() {
 
 if isMac;
 then
-	export PATH="$PATH:/usr/local/share/dotnet/"
+	export PATH="$PATH:/usr/local/share/dotnet/:/Users/Brandon/.gem/ruby/2.6.0/bin"
 	if [ ! -d "$HOME/.nvm" ];
 	then
 		curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.36.0/install.sh | bash
